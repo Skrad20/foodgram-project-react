@@ -25,12 +25,13 @@ SECRET_KEY = '&-*r16^^ltxrpb2cbdhph7i=1abush7)-dxj2q&((g7ys2t28a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
+    'recipes.apps.RecipesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,10 +52,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'foodgram.urls'
 
+
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+TEMPLATE_DIR_DOCS = os.path.join(BASE_DIR, "docs")
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR, TEMPLATE_DIR_DOCS,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +71,12 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
@@ -102,6 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -118,3 +130,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),) 
