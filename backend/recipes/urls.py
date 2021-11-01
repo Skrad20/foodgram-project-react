@@ -5,12 +5,9 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from .views import (
-    index_api,
     RecipesViewSet,
-    UserViewSet,
     IngredientsViewSet,
     TagsViewSet,
-    AuthTokenViewSet,
 )
 
 
@@ -44,29 +41,7 @@ v1_router.register(
     IngredientsViewSet,
     basename='ingredient_id'
 )
-v1_router.register('users/', UserViewSet, basename='users')
-v1_router.register('users/<int: user_id>', UserViewSet, basename='users_id')
-v1_router.register('users/me', UserViewSet, basename='me')
-v1_router.register(
-    'users/subscriptions',
-    UserViewSet,
-    basename='subscriptions'
-)
-v1_router.register('users/suscribe', UserViewSet, basename='suscribe')
-v1_router.register('users/set_password', UserViewSet, basename='set_password')
-v1_router.register(
-    'auth/token/login/',
-    AuthTokenViewSet,
-    basename='token_login'
-)
-v1_router.register(
-    'auth/token/logout',
-    AuthTokenViewSet,
-    basename='token_logout'
-)
-
 
 urlpatterns = [
-    path('', index_api, name='index'),
     path('v1/', include(v1_router.urls)),
 ]

@@ -1,20 +1,20 @@
 from rest_framework import serializers
 from .models import (
-    Follow,
-    User,
-    Recipes,
+    Recipe,
     Tag,
     ShoppingCart,
     Favoritesource,
-    Ingredient
+    Ingredient,
+    IngredAmount
 )
+from users.models import CustomUser
 
 
 class UserSerializer(serializers.ModelSerializer):
     '''Сериализация данных по пользователям.'''
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = [
             'email',
             'id',
@@ -25,11 +25,43 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
-class ReciplesSerializer(serializers.ModelSerializer):
-    '''Серялизатор данных по рецептам.'''
+class TagSerializer(serializers.ModelSerializer):
+    '''Сериализатор данных по Тэгам.'''
 
     class Meta:
-        model = Recipes
+        model = Tag
+        fields = '__all__'
+
+
+class IngredientSerializer(serializers.ModelSerializer):
+    '''Сериализатор данных по Ингридиентам.'''
+
+    class Meta:
+        model = Ingredient
+        fields = '__all__'
+
+
+class IngredAmountSerializer(serializers.ModelSerializer):
+    name = serializers.ReadOnlyField()
+    measurement_unit = serializers.ReadOnlyField()
+    amount = serializers.StringRelatedField()
+
+    class Meta:
+        model = IngredAmount
+        fields = ('id', 'name', 'amount', 'measurement_unit')
+
+
+class ReciplesSerializer(serializers.ModelSerializer):
+    '''Сериализатор данных по рецептам.'''
+    ingredients = IngredAmountSerializer(
+        many=True,
+        read_only=True,
+    )
+    author = serializers.StringRelatedField()
+    tags = TagSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Recipe
         fields = [
             'id',
             'tags',
@@ -40,43 +72,7 @@ class ReciplesSerializer(serializers.ModelSerializer):
             'image',
             'text',
             'cooking_time',
-        ]
-
-
-class TagSerializer(serializers.ModelSerializer):
-    '''Сериализатор данных по Тэгам.'''
-
-    class Meta:
-        model = Tag
-        fields = [
-            'id',
-            'name',
-            'color',
-            'slug',
-        ]
-
-
-class IngredientSerializer(serializers.ModelSerializer):
-    '''Сериализатор данных по Ингридиентам.'''
-
-    class Meta:
-        model = Ingredient
-        fields = [
-            'id',
-            'name',
-            'measurement_unit',
-        ]
-
-
-class FollowSerializer(serializers.ModelSerializer):
-    '''Сериализатор данных по подпискам.'''
-
-    class Meta:
-        model = Follow
-        fields = [
-            'id',
-            'user',
-            'author',
+            'ingredients',
         ]
 
 
@@ -88,7 +84,7 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'user',
-            'recipes',
+            'recipe',
         ]
 
 

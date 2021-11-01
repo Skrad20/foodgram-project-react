@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.views import APIView, Response
 from rest_framework import (
     permissions,
@@ -7,6 +11,7 @@ from rest_framework import (
     viewsets,
     filters,
     mixins,
+    status,
 )
 
 from .serializers import (
@@ -14,68 +19,87 @@ from .serializers import (
     IngredientSerializer,
     ShoppingCartSerializer,
     TagSerializer,
-    UserSerializer,
     ReciplesSerializer,
 
 )
-
+from users.models import CustomUser
 from .models import (
-    User,
-    Recipes,
+    Recipe,
     Tag,
     ShoppingCart,
     Favoritesource,
-    Ingredient
+    Ingredient,
 )
 
 
-
-def index_api(request):
-    return HttpResponse('Онсновная страница API')
-
-
-class index_recipes(viewsets.ModelViewSet):
-    def get(self, request, format=None):
-        return HttpResponse('Онсновная страница API')
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    '''Возвращает данные по пользователям.'''
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
 class RecipesViewSet(viewsets.ModelViewSet):
-    '''Возвращает данные по рецептам.'''
-    queryset = Recipes.objects.all()
+    '''
+    Возвращает данные по рецептам.
+    Отвечает по адресам:
+    'recipes/'
+    'recipes/id/'
+    'recipes/id/favorite/'
+    'recipes/id/shopping_cart/'
+    '''
+    queryset = Recipe.objects.all()
     serializer_class = ReciplesSerializer
+    filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]
 
 
 class TagsViewSet(viewsets.ModelViewSet):
-    '''Возвращает данные по тэгам'''
+    '''
+    Возвращает данные по тэгам.
+    Отвечает по адресам:
+    'tags/'
+    'tags/id/'
+    '''
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]
 
 
 class IngredientsViewSet(viewsets.ModelViewSet):
-    '''Возвращает данные по ингедиентам.'''
+    '''
+    Возвращает данные по ингедиентам.
+    Отвечает по адресам:
+    'ingredients/'
+    'ingredients/id/'
+    '''
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
+    filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]
 
 
 class ShoppingCartViewSer(viewsets.ModelViewSet):
-    '''Возвращает данные по корзине.'''
+    '''
+    Возвращает данные по корзине.
+    Отвечает по адресам:
+    'recipes/download_shopping_cart/'
+    'recipes/id/download_shopping_cart/'
+    '''
     queryset = ShoppingCart.objects.all()
     serializer_class = ShoppingCartSerializer
+    filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]
+
+    @action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[IsAuthenticated, ]
+    )
+    def download_shopping_cart(self, request, pk=None):
+        '''
+        Реализует сохранение списка покупок.
+        Доступно только авторизованным пользователям.
+        '''
+        pass
 
 
 class FavoriteViewSet(viewsets.ModelViewSet):
-    '''Возвращает данные по избранному.'''
+    '''
+    Возвращает данные по списку избранного.
+    Отвечает по адресам:
+    'recipes/id/favorite/'
+    '''
     queryset = Favoritesource.objects.all()
     serializer_class = FavoritesourceSerializer
-
-
-class AuthTokenViewSet(viewsets.ModelViewSet):
-    '''Возвращает данные по токенам.'''
-    queryset = Recipes.objects.all()
-    serializer_class = ReciplesSerializer
+    filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]

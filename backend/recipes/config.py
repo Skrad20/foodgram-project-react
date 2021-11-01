@@ -1,3 +1,7 @@
-ADMIN: str = 'admin'
-MODER: str = 'moderator'
-USER: str = 'user'
+COLOR_CHOICES = [
+    ('#0000FF', 'Синий'),
+    ('#FFA500', 'Оранжевый'),
+    ('#008000', 'Зеленый'),
+    ('#800080', 'Фиолетовый'),
+    ('#FFFF00', 'Желтый'),
+]
