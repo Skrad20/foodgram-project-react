@@ -8,21 +8,8 @@ from .models import (
     IngredAmount
 )
 from users.models import CustomUser
-
-
-class UserSerializer(serializers.ModelSerializer):
-    '''Сериализация данных по пользователям.'''
-
-    class Meta:
-        model = CustomUser
-        fields = [
-            'email',
-            'id',
-            'username',
-            'firstname',
-            'last_name',
-            'is_subscriebe',
-        ]
+from users.serializers import UserSerializer
+from .validators import CustomRecipeValidator
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -51,7 +38,7 @@ class IngredAmountSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'amount', 'measurement_unit')
 
 
-class ReciplesSerializer(serializers.ModelSerializer):
+class RecipeSerializer(serializers.ModelSerializer):
     '''Сериализатор данных по рецептам.'''
     ingredients = IngredAmountSerializer(
         many=True,

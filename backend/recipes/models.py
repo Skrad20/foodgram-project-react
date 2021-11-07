@@ -74,9 +74,13 @@ class Recipe(models.Model):
     )
     is_favorited = models.BooleanField(
         verbose_name='Проверка на наличие в избранном',
+        blank=True,
+        default=False,
     )
     is_in_shopping_cart = models.BooleanField(
         verbose_name='Проверка на наличие в карте покупок',
+        blank=True,
+        default=False,
     )
     name = models.CharField(
         verbose_name='Название рецепта',
@@ -162,7 +166,7 @@ class ShoppingCart(models.Model):
         related_name='cart',
         on_delete=models.CASCADE
     )
-    recipes = models.ForeignKey(
+    recipe = models.ForeignKey(
         Recipe,
         verbose_name='Рецепты',
         related_name='cart',
@@ -170,7 +174,7 @@ class ShoppingCart(models.Model):
     )
 
     def __str__(self):
-        return f'{self.user} купит {self.recipes}'
+        return f'{self.user} купит {self.recipe}'
 
     class Meta:
         db_table = 'ShoppingCarts'

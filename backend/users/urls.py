@@ -7,18 +7,11 @@ from .views import (
 
 v1_router = DefaultRouter()
 
-v1_router.register('users/', UserViewSet, basename='users')
-v1_router.register('users/<int: user_id>', UserViewSet, basename='users_id')
-v1_router.register('users/me', UserViewSet, basename='me')
-v1_router.register(
-    'users/subscriptions',
-    FollowsViewSet,
-    basename='subscriptions'
-)
-v1_router.register('users/suscribe', FollowsViewSet, basename='suscribe')
+v1_router.register('users', UserViewSet, basename='users')
 
 
 urlpatterns = [
-    path('v1/', include(v1_router.urls)),
-    path("api/auth/", include("djoser.urls.authtoken")),
+    path('', include(v1_router.urls)),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.jwt')),
 ]

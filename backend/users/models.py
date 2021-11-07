@@ -6,13 +6,13 @@ from .config import ADMIN, MODER, USER
 class CustomUser(AbstractUser):
     email = models.EmailField(
         unique=True,
-        verbose_name='Адрес электронной почты'
+        verbose_name='Адрес электронной почты',
+        max_length=254,
     )
-    bio = models.CharField(
-        null=True,
+    username = models.CharField(
         max_length=150,
-        blank=True,
-        verbose_name='Информация',
+        unique=True,
+        verbose_name='Логин',
     )
     first_name = models.CharField(
         null=True,
@@ -31,11 +31,6 @@ class CustomUser(AbstractUser):
         max_length=90,
         blank=True,
         verbose_name='Пароль пользователя',
-    )
-    confirmation_code = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='Код подтверждения',
     )
 
     class Role(models.TextChoices):
@@ -86,6 +81,9 @@ class Follow(models.Model):
         related_name='following',
         verbose_name='Автор',
     )
+
+    def __str__(self):
+        return f'{self.user.username} подписан на {self.author.username}'
 
     class Meta:
         db_table = 'Follow'
