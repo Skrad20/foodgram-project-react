@@ -1,5 +1,25 @@
 from rest_framework import serializers
+from djoser.serializers import UserCreateSerializer
 from .models import CustomUser, Follow
+
+
+class CustomUserCreateSerializer(UserCreateSerializer):
+    email = serializers.EmailField()
+    username = serializers.CharField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+    password = serializers.CharField()
+
+    class Meta:
+        model = CustomUser
+        fields = (
+            'email',
+            'id',
+            'username',
+            'first_name',
+            'last_name',
+            'password'
+        )
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -28,8 +48,15 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PasswordSerializer(serializers.ModelSerializer):
     '''Сериализация для замены пароля.'''
-    old_password = serializers.CharField(required=True)
+    current_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+    class Meta:
+        model = CustomUser
+        fields = [
+            'new_password',
+            'current_password',
+        ]
 
 
 class FollowSerializer(serializers.ModelSerializer):

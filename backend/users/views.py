@@ -19,6 +19,7 @@ from rest_framework import (
 )
 from .serializers import (
     UserSerializer,
+    CustomUserCreateSerializer,
     FollowSerializer,
     PasswordSerializer,
 )
@@ -42,6 +43,18 @@ class UserViewSet(viewsets.ModelViewSet):
     pagination_class = LimitOffsetPagination
     permission_classes = [AllowAny, ]
 
+    def create(self, request, *args, **kwargs):
+        serializer = CustomUserCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_201_CREATED,
+            headers=headers
+        )
+
     @action(
         detail=False,
         methods=['post'],
@@ -53,15 +66,20 @@ class UserViewSet(viewsets.ModelViewSet):
         Реализует механизм смены пароля.
         Только POST запросы и только авторизованные.
         '''
-        user = self.get_object()
+        user = get_object_or_404(CustomUser, email=request.user)
         serializer = PasswordSerializer(data=request.data)
         if serializer.is_valid():
-            user.set_password(serializer.validated_data['password'])
+            user.set_password(serializer.validated_data['new_password'])
             user.save()
-            return Response({'status': 'Пароль установлен'})
+            return Response(
+                serializer.data,
+                status=status.HTTP_204_NO_CONTENT
+            )
         else:
-            return Response(serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
     @action(
         detail=False,

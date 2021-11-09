@@ -60,6 +60,20 @@ class RecipesViewSet(viewsets.ModelViewSet):
     search_fields = ('name', 'text', 'ingredients__name')
     ordering_fields = ('name', 'pub_date')
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data,
+            status=status.HTTP_201_CREATED,
+            headers=headers
+        )
+
+    def perform_create(self, serializer):
+        return serializer.save(author=self.request.user)
+
     def perform_create(self, serializer):
         return serializer.save(author=self.request.user)
 
