@@ -1,8 +1,6 @@
 from rest_framework import serializers
 from django.shortcuts import (
-    render,
     get_object_or_404,
-    redirect
 )
 from .models import (
     Recipe,
@@ -13,9 +11,7 @@ from .models import (
     IngredAmount
 )
 from drf_extra_fields.fields import Base64ImageField
-from users.models import CustomUser
 from users.serializers import UserSerializer
-from .validators import CustomRecipeValidator
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -35,7 +31,8 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class IngredAmountSerializer(serializers.ModelSerializer):
-    name = serializers.ReadOnlyField()
+    id = serializers.ReadOnlyField(source='ingredient.id')
+    name = serializers.ReadOnlyField(source='ingredient.name')
     measurement_unit = serializers.ReadOnlyField()
     amount = serializers.StringRelatedField()
 
@@ -120,6 +117,9 @@ class RecipeSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, data):
+        '''
+        Обновленный метод создания рецептов.
+        '''
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         if data.get('image') is not None:
@@ -132,6 +132,9 @@ class RecipeSerializer(serializers.ModelSerializer):
         return recipe
 
     def update(self, recipe: Recipe, data):
+        '''
+        Обновленный метод обновления рецептов.
+        '''
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         if data.get('image') is not None:

@@ -1,3 +1,4 @@
+#! /bin/bash
 sqlite3 backend/db.sqlite3
 .mode csv
 .separator ';'

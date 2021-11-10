@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import (
-    Follow,
     Recipe,
     Tag,
     ShoppingCart,
@@ -9,7 +8,7 @@ from .models import (
     IngredAmount
 )
 
-admin.site.register(Follow)
+
 admin.site.register(Recipe)
 admin.site.register(Tag)
 admin.site.register(Favoritesource)

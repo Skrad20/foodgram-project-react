@@ -3,7 +3,6 @@ from django.core import validators
 from .config import COLOR_CHOICES
 from users.models import (
     CustomUser,
-    Follow,
 )
 
 
@@ -18,8 +17,6 @@ class Tag(models.Model):
         max_length=20,
         verbose_name='Цвет',
         choices=COLOR_CHOICES,
-        blank=True,
-        null=True,
     )
     slug = models.SlugField(
         max_length=200,
