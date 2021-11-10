@@ -3,18 +3,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.pagination import LimitOffsetPagination
 from django.shortcuts import (
-    render,
     get_object_or_404,
-    redirect
 )
-from rest_framework.authentication import TokenAuthentication
 from rest_framework import (
-    pagination,
-    permissions,
-    serializers,
     viewsets,
-    filters,
-    mixins,
     status,
 )
 from .serializers import (
@@ -164,7 +156,7 @@ class UserViewSet(viewsets.ModelViewSet):
         user = get_object_or_404(CustomUser, email=request.user)
         author = get_object_or_404(CustomUser, id=pk)
         if not Follow.objects.filter(
-            user=request.user, 
+            user=request.user,
             author=author.id
         ).exists():
             data = {

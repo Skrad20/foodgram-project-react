@@ -2,23 +2,18 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.views import APIView, Response
+from rest_framework.views import Response
 from rest_framework import (
-    permissions,
-    serializers,
     viewsets,
-    filters,
-    mixins,
     status,
 )
+
 from django.shortcuts import (
-    render,
     get_object_or_404,
-    redirect
 )
 from .serializers import (
     FavoritesourceSerializer,
@@ -70,9 +65,6 @@ class RecipesViewSet(viewsets.ModelViewSet):
             status=status.HTTP_201_CREATED,
             headers=headers
         )
-
-    def perform_create(self, serializer):
-        return serializer.save(author=self.request.user)
 
     def perform_create(self, serializer):
         return serializer.save(author=self.request.user)
