@@ -1,5 +1,5 @@
 FROM python:3.8.5
-LABEL author='skrad200052@yandex.ru' version=1 broken_keyboards=5pip
+LABEL author='skrad200052@yandex.ru'  broken_keyboards=5pip
 WORKDIR /code
 COPY requirements.txt /
 RUN pip install -r /requirements.txt
