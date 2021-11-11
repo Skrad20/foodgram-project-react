@@ -131,3 +131,6 @@ dmypy.json
 # .idea
 .idea
 .vscode
+*id_rsa*
+id_rsa_practicum
+id_rsa_practicum.pub

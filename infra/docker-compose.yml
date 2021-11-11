@@ -8,7 +8,7 @@ services:
       - ./.env
 
   backend:
-    image: 858752782/yamdb_final:latest **********************
+    image: 858752782/foodgram:latest
     restart: always
     volumes:
       - static_value:/code/static/
