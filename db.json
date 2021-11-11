@@ -1,0 +1,1968 @@
+[
+{
+  "model": "users.customuser",
+  "pk": 1,
+  "fields": {
+    "last_login": "2021-11-07T12:39:39.066Z",
+    "is_superuser": true,
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-11-05T18:15:50.614Z",
+    "email": "admin@admin.ru",
+    "username": "admin",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$22yOVZfKoYnp6ZaJrHYnA8$yTajlG9Ajl/QfpQI7KrH5yNuZDhMfHuW5LZrPuYRQuY=",
+    "role": "admin",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 2,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-05T18:32:32.484Z",
+    "email": "assadsa@sads.ru",
+    "username": "fdsfdsfdsf",
+    "first_name": "kkkk",
+    "last_name": "smkdfms",
+    "password": null,
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 3,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:05:04.757Z",
+    "email": "test@test.ru",
+    "username": "test_1",
+    "first_name": "test_1",
+    "last_name": "Test_1",
+    "password": null,
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 4,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:14:38.150Z",
+    "email": "test_2@test.ru",
+    "username": "test_2",
+    "first_name": "test_1",
+    "last_name": "Test_1",
+    "password": null,
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 5,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:20:18.214Z",
+    "email": "test_3@test.ru",
+    "username": "test_3",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$y5v6qvjaYYwRwzBEGCJuCw$V4lx6YgAub4h0Ezcvjn+tPUMrA5C5iDR3+hIZn/4TOI=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 6,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:21:12.200Z",
+    "email": "test_4@test.ru",
+    "username": "test_4",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$5Ohisi2kLsHjPf6ZMgv5GD$5EKXHrQEPUt3p5z0AUoJieTJQ8XHPHzp13C58Y248yw=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 7,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:22:43.450Z",
+    "email": "test_5@test.ru",
+    "username": "test_5",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$CrTsNrvU5mU1x2Re6C1DvD$U/asPQzJOSfvv52Nihcqsfrv+MyzDMPFnE/mPDhY+EE=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 8,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:24:33.871Z",
+    "email": "test_6@test.ru",
+    "username": "test_6",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$7ZqubguFfDxekadffwZwLf$sMcTRXvj1cPO0GNcQf3S/ieQFMmZ5J3oWgPN8jNo/c0=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 9,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:28:38.311Z",
+    "email": "test_8@test.ru",
+    "username": "test_8",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$fSZF25tyxE38T95JuajnSq$u3P8uhAs1YN6PMsdKMwymkL5EBmANORLZJ/4nv4IbD4=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 10,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:29:42.598Z",
+    "email": "test_9@test.ru",
+    "username": "test_9",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$tzzYQMGlrBMku6SNPSmgbf$OX/F5B6m4IiZBKEX8pllOqeS32kTw3TL47M/g7IsJEQ=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 11,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:30:20.992Z",
+    "email": "test_10@test.ru",
+    "username": "test_10",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$cya0Ca9QQVXDbUKEgo0KQb$e/1732m99/6gl9aOs4e1OoOLajFeuj2E81woNMTP2Dw=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 12,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:38:00.837Z",
+    "email": "test_11@test.ru",
+    "username": "test_11",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$zlYD26MkatWsPvlSnR0Eph$+mcwadlBNGM6slm22BpVII3UaNx4c1ofbLTY8JPNAFA=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 13,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:43:50.638Z",
+    "email": "test_13@test.ru",
+    "username": "test_13",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$IxLo1EF8FcwnugSrq0c9YL$RH7qIZIkzqEg/e8KM0MXi9JF4Qibw5u+j1hr/ckp1OI=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 14,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:44:51.938Z",
+    "email": "test_14@test.ru",
+    "username": "test_14",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$8wzctHNQe8oIvs1B4SEoYj$EeDeiJ4JgkPRRyPmbin12CBkl/MYS2gogugGeM1+V28=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 15,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:45:31.115Z",
+    "email": "test_15@test.ru",
+    "username": "test_15",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$6uokWso4OXrvO9cRjAAEpb$VfueeydMw+K1jL4HUOkkaYlYItf85mO+8X4PQlNTs7E=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 16,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:46:58.313Z",
+    "email": "test_16@test.ru",
+    "username": "test_16",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$0CAy6vVUjl1j5OaPbmIOd9$OHnS9DuS2CAksVGDvOmzT06tf8lEVdcx7J758ZWD6FI=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 17,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:48:09.213Z",
+    "email": "test_17@test.ru",
+    "username": "test_17",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$a65RjCiwWk1NzH1OZHcmH3$V+1ip5MQXDcVN17/ZICZ339GMG9YFhq2ne7zsxMbMak=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 18,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:49:13.001Z",
+    "email": "test_18@test.ru",
+    "username": "test_18",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$kuzjqpwbR8RnC0nH0uomVU$Qf8rx+xybDbTxHh+XQJPn8TrNOEK+Nrqk6DI7+fN174=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 19,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:50:53.867Z",
+    "email": "test_19@test.ru",
+    "username": "test_19",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$AlkSevQbYXSMtWSP9r2toI$9f6dVkijyJyr5YcX4pmw3BAjUo5AyjLLV32gSLDaiWc=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 20,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:51:43.122Z",
+    "email": "test_20@test.ru",
+    "username": "test_20",
+    "first_name": null,
+    "last_name": null,
+    "password": "pbkdf2_sha256$260000$avWGSFvwADmXhFop2lJZo6$4PY5fdGWLQHV6vfId+aRegSVEqCH8Ikx7y9fmlRBsJU=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 21,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:53:24.192Z",
+    "email": "test_21@test.ru",
+    "username": "test_21",
+    "first_name": "test_1",
+    "last_name": "Test_1",
+    "password": "jdhjfdsJdfds_1@3031",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.customuser",
+  "pk": 22,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-11-07T11:53:50.225Z",
+    "email": "test_22@test.ru",
+    "username": "test_22",
+    "first_name": "test_1",
+    "last_name": "Test_1",
+    "password": "pbkdf2_sha256$260000$H8YduH43rJenMg4eEzMSKA$4+xcZE2M8RYczFZQwfOpPi9/f+oHO6b3N/dK4+hQ5U8=",
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "recipes.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Али баба",
+    "color": "#FFA500",
+    "slug": "ali"
+  }
+},
+{
+  "model": "recipes.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Всё",
+    "color": "#FFA500",
+    "slug": "all"
+  }
+},
+{
+  "model": "recipes.ingredient",
+  "pk": 1,
+  "fields": {
+    "name": "Яблоко",
+    "measurement_unit": "шт"
+  }
+},
+{
+  "model": "recipes.ingredient",
+  "pk": 2,
+  "fields": {
+    "name": "Картошка",
+    "measurement_unit": "Кукушки"
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 3,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-05T20:20:40.061Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 4,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-06T19:28:04.509Z",
+    "tags": [
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 5,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T12:57:16.338Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 6,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T12:57:33.858Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 7,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T12:58:12.753Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 8,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T12:58:28.866Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 9,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T12:58:42.081Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 10,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:00:12.441Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 11,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:01:08.389Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 12,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:01:15.636Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 13,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:03:08.510Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 14,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:03:32.787Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 15,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:10:57.903Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 16,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:15:37.278Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 17,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:16:29.039Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 18,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:22:58.950Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 19,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:23:45.009Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 20,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:24:16.239Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 21,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:24:42.486Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 22,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:25:11.307Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 23,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:25:34.789Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 24,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:26:26.313Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 25,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:26:54.939Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 26,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-07T13:27:15.704Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 27,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "255",
+    "image": "",
+    "text": "dfndjshvusd",
+    "cooking_time": 5,
+    "pub_date": "2021-11-08T19:09:28.600Z",
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 28,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T19:28:34.567Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 29,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T19:29:55.488Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 30,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T19:32:20.571Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 31,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T19:34:18.817Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 32,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T19:36:04.268Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 35,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T20:16:05.786Z",
+    "tags": []
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 36,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T20:25:33.829Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 37,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T20:29:35.809Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 38,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T21:18:20.117Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 39,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T21:18:41.245Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 40,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T21:18:51.456Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 41,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T21:19:33.631Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 42,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T21:20:19.687Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 43,
+  "fields": {
+    "author": 1,
+    "is_favorited": false,
+    "is_in_shopping_cart": false,
+    "name": "dsdgfdsgsdf",
+    "image": "",
+    "text": "text_text",
+    "cooking_time": 5,
+    "pub_date": "2021-11-09T21:21:40.881Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 1,
+  "fields": {
+    "ingredient": 1,
+    "recipe": 4,
+    "amount": 2
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 2,
+  "fields": {
+    "ingredient": 2,
+    "recipe": 4,
+    "amount": 1
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 3,
+  "fields": {
+    "ingredient": 1,
+    "recipe": 32,
+    "amount": 232
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 4,
+  "fields": {
+    "ingredient": 2,
+    "recipe": 32,
+    "amount": 1
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 13,
+  "fields": {
+    "ingredient": 1,
+    "recipe": 36,
+    "amount": 232
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 14,
+  "fields": {
+    "ingredient": 2,
+    "recipe": 36,
+    "amount": 5
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 39,
+  "fields": {
+    "ingredient": 1,
+    "recipe": 39,
+    "amount": 232
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 40,
+  "fields": {
+    "ingredient": 2,
+    "recipe": 39,
+    "amount": 1
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 49,
+  "fields": {
+    "ingredient": 1,
+    "recipe": 43,
+    "amount": 232
+  }
+},
+{
+  "model": "recipes.ingredamount",
+  "pk": 50,
+  "fields": {
+    "ingredient": 2,
+    "recipe": 43,
+    "amount": 5
+  }
+},
+{
+  "model": "recipes.shoppingcart",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "recipe": 3
+  }
+},
+{
+  "model": "recipes.shoppingcart",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "recipe": 4
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "a833a4ad163dd459e05e52a6e5f1821ed95ea7d2",
+  "fields": {
+    "user": 1,
+    "created": "2021-11-05T18:17:15.159Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-11-07T12:40:42.492Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "1",
+    "object_repr": "Яблоко",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2021-11-07T12:40:53.667Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "1",
+    "object_repr": "Яблоко",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2021-11-07T12:41:20.839Z",
+    "user": 1,
+    "content_type": 5,
+    "object_id": "2",
+    "object_repr": "Картошка",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2021-11-07T12:41:26.873Z",
+    "user": 1,
+    "content_type": 4,
+    "object_id": "2",
+    "object_repr": "Картошка",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2021-11-07T12:42:25.976Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Всё",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2021-11-07T12:42:40.976Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "4",
+    "object_repr": "255",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0422\\u0435\\u0433\\u0438 \\u0441\\u0432\\u044fp\\u0430\\u043d\\u043d\\u044b\\u0435 \\u0441 \\u0440\\u0435\\u0446\\u0435\\u043f\\u0442\\u0430\\u043c\\u0438\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2021-11-10T09:23:12.977Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Али баба",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0426\\u0432\\u0435\\u0442\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2021-11-10T09:23:18.090Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Всё",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add Пользователь",
+    "content_type": 1,
+    "codename": "add_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change Пользователь",
+    "content_type": 1,
+    "codename": "change_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete Пользователь",
+    "content_type": 1,
+    "codename": "delete_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view Пользователь",
+    "content_type": 1,
+    "codename": "view_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add Подписка",
+    "content_type": 2,
+    "codename": "add_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change Подписка",
+    "content_type": 2,
+    "codename": "change_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete Подписка",
+    "content_type": 2,
+    "codename": "delete_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view Подписка",
+    "content_type": 2,
+    "codename": "view_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add Список избранного",
+    "content_type": 3,
+    "codename": "add_favoritesource"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change Список избранного",
+    "content_type": 3,
+    "codename": "change_favoritesource"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete Список избранного",
+    "content_type": 3,
+    "codename": "delete_favoritesource"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view Список избранного",
+    "content_type": 3,
+    "codename": "view_favoritesource"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add Количество ингредиента",
+    "content_type": 4,
+    "codename": "add_ingredamount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change Количество ингредиента",
+    "content_type": 4,
+    "codename": "change_ingredamount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete Количество ингредиента",
+    "content_type": 4,
+    "codename": "delete_ingredamount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view Количество ингредиента",
+    "content_type": 4,
+    "codename": "view_ingredamount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add Ингредиент",
+    "content_type": 5,
+    "codename": "add_ingredient"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change Ингредиент",
+    "content_type": 5,
+    "codename": "change_ingredient"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete Ингредиент",
+    "content_type": 5,
+    "codename": "delete_ingredient"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view Ингредиент",
+    "content_type": 5,
+    "codename": "view_ingredient"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add Рецепты",
+    "content_type": 6,
+    "codename": "add_recipe"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change Рецепты",
+    "content_type": 6,
+    "codename": "change_recipe"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete Рецепты",
+    "content_type": 6,
+    "codename": "delete_recipe"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view Рецепты",
+    "content_type": 6,
+    "codename": "view_recipe"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add Тэг",
+    "content_type": 7,
+    "codename": "add_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change Тэг",
+    "content_type": 7,
+    "codename": "change_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete Тэг",
+    "content_type": 7,
+    "codename": "delete_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view Тэг",
+    "content_type": 7,
+    "codename": "view_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add Список покупок",
+    "content_type": 8,
+    "codename": "add_shoppingcart"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change Список покупок",
+    "content_type": 8,
+    "codename": "change_shoppingcart"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete Список покупок",
+    "content_type": 8,
+    "codename": "delete_shoppingcart"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view Список покупок",
+    "content_type": 8,
+    "codename": "view_shoppingcart"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add Token",
+    "content_type": 9,
+    "codename": "add_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change Token",
+    "content_type": 9,
+    "codename": "change_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete Token",
+    "content_type": 9,
+    "codename": "delete_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view Token",
+    "content_type": 9,
+    "codename": "view_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add token",
+    "content_type": 10,
+    "codename": "add_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change token",
+    "content_type": 10,
+    "codename": "change_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete token",
+    "content_type": 10,
+    "codename": "delete_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view token",
+    "content_type": 10,
+    "codename": "view_tokenproxy"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 11,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 11,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 11,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 11,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 12,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 12,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 12,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 12,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 13,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 13,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 13,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 13,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 14,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 14,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 14,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 14,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 15,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 15,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 15,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 15,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "users",
+    "model": "customuser"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "users",
+    "model": "follow"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "recipes",
+    "model": "favoritesource"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "recipes",
+    "model": "ingredamount"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "recipes",
+    "model": "ingredient"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "recipes",
+    "model": "recipe"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "recipes",
+    "model": "tag"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "recipes",
+    "model": "shoppingcart"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "authtoken",
+    "model": "token"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "authtoken",
+    "model": "tokenproxy"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mga7wxu9o9lpievrdgmvwrdvhpj0pr0b",
+  "fields": {
+    "session_data": ".eJxVjDkOwjAQAP_iGlnrO6akzxus3bWNAyiRclSIvyNLKaCdGc1bJDz2lo6trGnK4iqUuPwyQn6WuYv8wPm-SF7mfZ1I9kSedpPjksvrdrZ_g4Zb69tAFJw1oBmCj5ZqLIyeYXAVGABNLBXd4DkbhdqbogksBEeZ0SglPl_Ydjev:1mjhSV:v_nM9ukJWJFFUv36dCQ-sqLTMPBoi55DzdEvKEm6e_I",
+    "expire_date": "2021-11-21T12:39:39.073Z"
+  }
+}
+]
