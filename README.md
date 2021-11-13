@@ -2,7 +2,7 @@
 
 __*Foodgram*__
 
-![example workflow](https://github.com/Skrad20/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg)
+![example workflow](https://github.com/Skrad20/foodgram-project-react/.github/workflows/main.yaml/badge.svg)
 
 # 2. Краткое описание
 
