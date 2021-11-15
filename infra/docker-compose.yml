@@ -11,7 +11,7 @@ services:
     image: 858752782/foodgram:latest
     restart: always
     build:
-      context: ../bakend
+      context: ../backend
       dockerfile: Dockerfile
     volumes:
       - static_value:/code/static/
