@@ -84,7 +84,7 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -173,3 +173,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

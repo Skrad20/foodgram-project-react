@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.contrib.auth import authenticate
 from djoser.serializers import UserCreateSerializer
 
 from .models import (
@@ -75,3 +76,40 @@ class FollowSerializer(serializers.ModelSerializer):
             'user',
             'author',
         ]
+
+
+class UserRegistrationSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        fields = (
+            'email',
+            'username',
+            'first_name',
+            'last_name',
+            'password',
+        )
+
+
+class AuthTokenSerializer(serializers.Serializer):
+    email = serializers.EmailField(label='Email')
+    password = serializers.CharField(
+        label=('Password',),
+        style={'input_type': 'password'},
+        trim_whitespace=False
+    )
+
+    def validate(self, attrs):
+        email = attrs.get('email')
+        password = attrs.get('password')
+
+        if email and password:
+            user = authenticate(request=self.context.get('request'),
+                                email=email, password=password)
+            if not user:
+                msg = 'Неверные учетные данные.'
+                raise serializers.ValidationError(msg, code='authorization')
+        else:
+            msg = 'Запрос должен содержать email и пароль.'
+            raise serializers.ValidationError(msg, code='authorization')
+
+        attrs['user'] = user
+        return attrs
