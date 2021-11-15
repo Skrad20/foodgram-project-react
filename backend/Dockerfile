@@ -4,4 +4,4 @@ WORKDIR /code
 COPY requirements.txt /
 RUN pip install -r /requirements.txt
 COPY . .
-CMD cd backend/; gunicorn --bind 0.0.0.0:8000 foodgram.wsgi
+CMD cd backend/; python manage.py loaddata db.json; gunicorn --bind 0.0.0.0:8000 foodgram.wsgi
