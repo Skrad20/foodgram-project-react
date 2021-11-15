@@ -119,3 +119,5 @@ Yandex.Practicum, Евдокимов Е.Г.
 * [Работа с базами данными](https://the-bosha.ru/2016/06/29/django-delaem-damp-bazy-dannykh-i-vosstanavlivaem-iz-nego-s-dumpdata-i-loaddata/)
 
 * [Документация Sqlite3](https://sqlite.com/matrix/cli.html)
+
+* [Советы по уборке за докером](https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes-ru)
