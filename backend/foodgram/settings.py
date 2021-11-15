@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',
+    'foodgram',
     'users.apps.UsersConfig',
     'recipes.apps.RecipesConfig',
     'rest_framework.authtoken',
