@@ -12,7 +12,7 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append('/backend/foodgram')
+sys.path.append('/home/skrad/foodgram-project-react/backend/foodgram')
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'foodgram.settings')
 
