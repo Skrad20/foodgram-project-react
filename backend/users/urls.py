@@ -3,8 +3,9 @@ from rest_framework.routers import DefaultRouter
 
 from .views import (
     UserViewSet,
+    CustomAuthToken,
+    Logout
 )
-
 v1_router = DefaultRouter()
 
 v1_router.register('users', UserViewSet, basename='users')
@@ -12,6 +13,7 @@ v1_router.register('users', UserViewSet, basename='users')
 
 urlpatterns = [
     path('', include(v1_router.urls)),
-    path('auth/', include('djoser.urls.authtoken')),
-    path('auth/', include('djoser.urls.jwt')),
+    path('', include('djoser.urls')),
+    path('auth/token/login/', CustomAuthToken.as_view()),
+    path('auth/token/logout/', Logout.as_view()),
 ]
