@@ -60,6 +60,7 @@ jobs:
           echo "ok 1"
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram
           echo "ok 2"
+          cd infra/
           sudo docker-compose stop
           echo "ok 3"
           sudo docker-compose rm backend
