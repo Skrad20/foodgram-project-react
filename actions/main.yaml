@@ -58,7 +58,7 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}}
         stack_file_name: docker-compose.yml
         script: |
-          echo 6
+          echo "ok 1"
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram
           sudo docker-compose stop
           sudo docker-compose rm backend
