@@ -60,6 +60,7 @@ jobs:
           echo "ok 1"
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram
           echo "ok 2"
+          ls
           pwd
           cd infra/
           pwd
