@@ -61,8 +61,10 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram
           echo pull_docker
           pwd
-          sudo docker-compose -f skrad/foodgram-project-react/infra/docker-compose.yml stop
-          sudo docker-compose -f skrad/foodgram-project-react/infra/docker-compose.yml rm backend
+          cd infra/
+          sudo docker-compose stop
+          sudo docker-compose rm backend
+          cd ..
           echo reset_backend
           touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
@@ -72,9 +74,11 @@ jobs:
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_PORT=${{ secrets.DB_PORT }} >> .
           echo create_env
-          sudo docker-compose -f skrad/foodgram-project-react/infra/docker-compose.yml up -d
-          sudo docker-compose -f skrad/foodgram-project-react/infra/docker-compose.yml exec -T web python manage.py migrate --noinput
-          sudo docker-compose -f skrad/foodgram-project-react/infra/docker-compose.yml exec -T web python manage.py collectstatic --noinput
+          cd infra/
+          sudo docker-compose up -d
+          sudo docker-compose exec -T web python manage.py migrate --noinput
+          sudo docker-composeexec -T web python manage.py collectstatic --noinput
+          cd ..
           echo end
 
   send_message:
