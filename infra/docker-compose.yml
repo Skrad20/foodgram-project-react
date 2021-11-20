@@ -9,7 +9,7 @@ services:
       - ./.env
 
   backend:
-    image: 858752782/foodgram:latest
+    build: .
     restart: always
     build:
       context: ../backend
