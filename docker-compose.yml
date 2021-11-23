@@ -15,7 +15,7 @@ services:
     image: 858752782/foodgram:latest
     restart: always
     build:
-      context: ../backend
+      context: ./backend
       dockerfile: Dockerfile
     volumes:
       - static_value:/code/static/
@@ -28,7 +28,7 @@ services:
   frontend:
     image: foodgram_frontend
     build:
-      context: ../frontend
+      context: ./frontend
       dockerfile: Dockerfile
     volumes:
       - ../frontend/:/app/result_build/
