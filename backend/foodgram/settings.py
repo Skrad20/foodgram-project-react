@@ -25,7 +25,7 @@ SECRET_KEY = '&-*r16^^ltxrpb2cbdhph7i=1abush7)-dxj2q&((g7ys2t28a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['51.250.21.224', 'localhost', 'backend']
+ALLOWED_HOSTS = ['51.250.21.224', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -123,10 +123,10 @@ else:
         'default': {
             'ENGINE': os.environ.get('DB_ENGINE', default='django.db.backends.postgresql'),
             'NAME': os.environ.get('DB_NAME', default='postgres'),
-            'USER': os.environ.get('POSTGRES_USER'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': os.environ.get('DB_PORT'),
+            'USER': os.environ.get('POSTGRES_USER', default='postgres'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', default='postgres'),
+            'HOST': os.environ.get('DB_HOST', default='db'),
+            'PORT': os.environ.get('DB_PORT', default='5432'),
         }
 
     }

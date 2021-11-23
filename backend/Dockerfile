@@ -4,4 +4,4 @@ WORKDIR /code
 COPY requirements.txt /
 RUN pip install -r /requirements.txt
 COPY . .
-CMD python3 manage.py migrate && gunicorn --bind 0.0.0.0:8000 foodgram.wsgi
+CMD gunicorn --bind 0.0.0.0:8000 foodgram.wsgi
