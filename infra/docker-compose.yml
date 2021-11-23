@@ -3,21 +3,18 @@ version: '3.3'
 services:
   db:
     image: postgres:12.4
+    container_name: db
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
-    
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
     env_file:
       - ./.env
 
   web:
     image: 858752782/foodgram:latest
+    container_name: web
     restart: always
     build:
       context: ../backend
