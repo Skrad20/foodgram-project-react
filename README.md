@@ -101,6 +101,12 @@ docker-compose exec web python manage.py dumpdata --indent 2 > fixtures.json
 docker-compose down
 ```
 
+* Остановить работу всех образов
+
+```bash
+docker-compose down
+```
+
 * Удалить неиспользуемые образы, контейнеры, тома.
 
 ```bash
