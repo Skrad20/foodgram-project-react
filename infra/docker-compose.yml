@@ -7,6 +7,12 @@ services:
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    ports: 
+      - "5432"
+    expose:
+      - "5432"
+    networks:
+      - host
     env_file:
       - ./.env
 
@@ -14,6 +20,8 @@ services:
     image: 858752782/foodgram:latest
     container_name: web
     restart: always
+    networks:
+      - host
     build:
       context: ../backend
       dockerfile: Dockerfile
@@ -27,6 +35,8 @@ services:
 
   frontend:
     image: foodgram_frontend
+    networks:
+      - host
     build:
       context: ../frontend
       dockerfile: Dockerfile
@@ -37,6 +47,9 @@ services:
 
   nginx:
     image: nginx:1.19.3
+    
+    networks:
+      - host
     ports:
       - 80:80
     volumes:
@@ -55,3 +68,7 @@ volumes:
   postgres_data: 
   static_value:
   media_value:
+
+    
+networks:
+  host:
