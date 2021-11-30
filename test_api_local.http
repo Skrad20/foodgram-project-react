@@ -1,0 +1,142 @@
+
+
+# Список пользователей
+GET http://127.0.0.1:8000/api/users/
+
+###
+# Создать пользователя
+POST http://127.0.0.1:8000/api/users/
+content-type: application/json
+
+{
+    "email": "Gagr@gaga.ru",
+    "username": "Gagaasd",
+    "first_name": "Gaasd",
+    "last_name": "AGsdsd",
+    "password": "FFFwhdsdgwh2313"
+}
+
+###
+# Пользователь
+GET http://127.0.0.1:8000/api/users/4/
+content-type: application/json
+
+###
+GET http://127.0.0.1:8000/api/users/me/
+content-type: application/json
+
+###
+POST http://127.0.0.1:8000/api/auth/token/login/
+content-type: application/json
+
+{
+    "email": "admin@admin.ru",
+    "password": "admin"
+}
+
+
+###
+POST http://127.0.0.1:8000/api/users/set_password/
+content-type: application/json
+Authorization: Token dbff2f5c8030e92908bb5712894f5c448539e6f8
+
+{
+    "new_password": "FFFwdsfshdsdgwh2313",
+    "current_password": "FFFwhdsdgwh2313"
+}
+
+###
+GET http://127.0.0.1:8000/api/recipes/
+content-type: application/json
+
+###
+GET http://127.0.0.1:8000/api/recipes/36/
+
+###
+POST http://127.0.0.1:8000/api/recipes/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+{
+    "name": "dsdgfdsgsdf",
+    "text": "text_text",
+    "cooking_time": 5,
+    "ingredients": [
+        {
+            "id": 1,
+            "amount": 232
+        },
+        {
+            "id": 2,
+            "amount": 1
+        }
+    ],
+    "tags": [
+        1,
+        2
+    ]
+}
+
+###
+GET http://127.0.0.1:8000/api/tags/
+
+###
+GET http://127.0.0.1:8000/api/tags/454453/
+
+###
+GET http://127.0.0.1:8000/api/tags/1/
+
+
+###
+GET http://127.0.0.1:8000/api/recipes/download_shopping_cart/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+GET http://127.0.0.1:8000/api/recipes/37/shopping_cart/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+DELETE http://127.0.0.1:8000/api/recipes/37/shopping_cart/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+GET http://127.0.0.1:8000/api/recipes/37/favorite/
+content-type: application/json
+Authorization: Token dbff2f5c8030e92908bb5712894f5c448539e6f8
+
+
+###
+DELETE http://127.0.0.1:8000/api/recipes/37/favorite/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+
+###
+# Неправильно работает
+GET http://127.0.0.1:8000/api/users/subscriptions/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+GET http://127.0.0.1:8000/api/users/9/subscribe/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+DELETE  http://127.0.0.1:8000/api/users/3/subscribe/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+### 
+GET http://127.0.0.1:8000/api/ingredients/
+
+
+###
+GET http://127.0.0.1:8000/api/ingredients/1/
+
+
+### 
+GET http://127.0.0.1:8000/subscriptions

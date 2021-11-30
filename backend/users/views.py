@@ -18,6 +18,7 @@ from .serializers import (
     FollowSerializer,
     PasswordSerializer,
     AuthTokenSerializer,
+    FollowSerializerView,
 )
 from .models import (
     Follow,
@@ -52,7 +53,7 @@ class UserViewSet(viewsets.ModelViewSet):
         )
 
     @action(
-        detail=False,
+        detail=True,
         methods=['post'],
         permission_classes=[IsAuthenticated, ],
         name='Изменение пароля',
@@ -78,7 +79,7 @@ class UserViewSet(viewsets.ModelViewSet):
             )
 
     @action(
-        detail=False,
+        detail=True,
         methods=['get', ],
         permission_classes=[IsAuthenticated, ],
         name='Личная страница пользователя',
@@ -108,10 +109,11 @@ class UserViewSet(viewsets.ModelViewSet):
         Возвращает пользователей, на которых подписан текущий пользователь.
         В выдачу добавляются рецепты.
         '''
+
         user = get_object_or_404(CustomUser, email=request.user)
-        queryset = Follow.objects.filter(user=user.id)
+        queryset = Follow.objects.filter(user=user)
         print(queryset)
-        serializer = FollowSerializer(
+        serializer = FollowSerializerView(
             queryset,
             many=True,
             context={'request': request}

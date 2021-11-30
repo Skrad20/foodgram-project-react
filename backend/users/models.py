@@ -91,6 +91,12 @@ class Follow(models.Model):
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
         ordering = ['-id']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', ],
+                name='user_unique',
+            )
+        ]
 
         constraints = [
             models.UniqueConstraint(
