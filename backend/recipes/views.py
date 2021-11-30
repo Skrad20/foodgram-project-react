@@ -20,11 +20,12 @@ from .serializers import (
     ShoppingCartSerializer,
     TagSerializer,
     RecipeSerializer,
-
 )
+
 from users.models import CustomUser
 from .models import (
     Recipe,
+    IngredAmount,
     Tag,
     ShoppingCart,
     Favoritesource,
@@ -85,17 +86,13 @@ class RecipesViewSet(viewsets.ModelViewSet):
             user=request.user, recipe=recipe
         ).exists():
             data = {
-                'errors': 'Рецепт уже в избранном.'
+                'errors': 'Рецепт уже добавлен в избранное.'
             }
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
         favorite_cart = Favoritesource.objects.create(user=user, recipe=recipe)
         favorite_cart.save()
-        serializer = FavoritesourceSerializer(
-            favorite_cart,
-            context={'request': request}
-        )
-
+        serializer = FavoritesourceSerializer(recipe)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @favorite.mapping.delete
@@ -183,21 +180,35 @@ class RecipesViewSet(viewsets.ModelViewSet):
         Реализует сохранение списка покупок.
         Доступно только авторизованным пользователям.
         '''
-        if not ShoppingCart.objects.filter(user__email=request.user).exists():
-            data = {
-                'errors': 'Этого рецепта нет в списке покупок.'
-            }
-            return Response(data, status=status.HTTP_204_NO_CONTENT)
-        shop_cart = ShoppingCart.objects.filter(user=request.user)
+        shop_cart = IngredAmount.objects.filter(
+            recipe__cart__user=request.user).values_list(
+                'ingredient__name',
+                'amount',
+                'ingredient__measurement_unit',
+        )
+        shop_list = {}
+        for item in shop_cart:
+            name = item[0]
+            if name in shop_list:
+                shop_list[name]['amount'] += item[1]
+            else:
+                shop_list[name] = {
+                    'amount': item[1],
+                    'measurement_unit': item[2],
+                }
+        print(shop_list)
         filename = "upload.csv"
         response = HttpResponse(content_type='text/csv')
         response["Content-Disposition"] = f"attachment; filename={filename}"
         template = loader.get_template('upload_template.txt')
-        shop_list = []
-        for obj in shop_cart:
-            shop_list.append(obj.recipe.name)
-        c = {'data': shop_list}
-        response.write(template.render(c))
+
+        data = ['Список ингредиентов', ]
+        for key in shop_list.keys():
+            amount_res = shop_list[key]['amount']
+            unit = shop_list[key]['measurement_unit']
+            data.append(f'{key}: {amount_res} {unit}')
+        resuolt = {'data': data}
+        response.write(template.render(resuolt))
         return response
 
 

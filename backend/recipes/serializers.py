@@ -220,12 +220,14 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
 
 
 class FavoritesourceSerializer(serializers.ModelSerializer):
-    '''Сериализатор данных по избранному.'''
+    '''Сериализатор данных по рецептам в избранное.'''
+    image = Base64ImageField(read_only=True)
 
     class Meta:
-        model = Favoritesource
+        model = Recipe
         fields = [
             'id',
-            'user',
-            'recipe',
+            'name',
+            'image',
+            'cooking_time',
         ]

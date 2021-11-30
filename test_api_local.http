@@ -24,6 +24,7 @@ content-type: application/json
 ###
 GET http://127.0.0.1:8000/api/users/me/
 content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
 POST http://127.0.0.1:8000/api/auth/token/login/
@@ -38,7 +39,7 @@ content-type: application/json
 ###
 POST http://127.0.0.1:8000/api/users/set_password/
 content-type: application/json
-Authorization: Token dbff2f5c8030e92908bb5712894f5c448539e6f8
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 {
     "new_password": "FFFwdsfshdsdgwh2313",
@@ -50,7 +51,7 @@ GET http://127.0.0.1:8000/api/recipes/
 content-type: application/json
 
 ###
-GET http://127.0.0.1:8000/api/recipes/36/
+GET http://127.0.0.1:8000/api/recipes/47/
 
 ###
 POST http://127.0.0.1:8000/api/recipes/
@@ -93,19 +94,19 @@ content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
-GET http://127.0.0.1:8000/api/recipes/37/shopping_cart/
+GET http://127.0.0.1:8000/api/recipes/47/shopping_cart/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
-DELETE http://127.0.0.1:8000/api/recipes/37/shopping_cart/
+DELETE http://127.0.0.1:8000/api/recipes/47/shopping_cart/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
 GET http://127.0.0.1:8000/api/recipes/37/favorite/
 content-type: application/json
-Authorization: Token dbff2f5c8030e92908bb5712894f5c448539e6f8
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 
 ###
@@ -115,7 +116,6 @@ Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 
 ###
-# Неправильно работает
 GET http://127.0.0.1:8000/api/users/subscriptions/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2

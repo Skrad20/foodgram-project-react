@@ -1,9 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from djoser.serializers import UserCreateSerializer
-from backend.recipes.models import Recipe
-from backend.recipes.serializers import RecipeSerializer
-
+from drf_extra_fields.fields import Base64ImageField
+from recipes.models import Recipe
 from .models import (
     CustomUser,
     Follow
@@ -53,6 +52,21 @@ class UserSerializer(serializers.ModelSerializer):
         ).exists()
 
 
+class RecipeSerializerForFollow(serializers.ModelSerializer):
+    '''Сериализатор данных по рецептам.'''
+    author = UserSerializer(read_only=True)
+    image = Base64ImageField(read_only=True)
+
+    class Meta:
+        model = Recipe
+        fields = [
+            'id',
+            'name',
+            'image',
+            'cooking_time',
+        ]
+
+
 class PasswordSerializer(serializers.ModelSerializer):
     '''Сериализация для замены пароля.'''
     current_password = serializers.CharField(required=True)
@@ -84,11 +98,11 @@ class FollowSerializer(serializers.ModelSerializer):
 class FollowSerializerView(serializers.ModelSerializer):
     '''Сериализатор данных по подпискам.'''
 
-    id = serializers.ReadOnlyField('author.id')
-    email = serializers.ReadOnlyField('author.email')
-    username = serializers.ReadOnlyField('author.username')
-    first_name = serializers.ReadOnlyField('author.first_name')
-    last_name = serializers.ReadOnlyField('author.last_name')
+    id = serializers.ReadOnlyField(source='author.id')
+    email = serializers.ReadOnlyField(source='author.email')
+    username = serializers.ReadOnlyField(source='author.username')
+    first_name = serializers.ReadOnlyField(source='author.first_name')
+    last_name = serializers.ReadOnlyField(source='author.last_name')
     is_subscribed = serializers.SerializerMethodField()
     recipes = serializers.SerializerMethodField()
     recipes_count = serializers.SerializerMethodField()
@@ -109,11 +123,11 @@ class FollowSerializerView(serializers.ModelSerializer):
 
     def get_recipes(self, obj):
         request = self.context.get('request')
-        recipes_limit = int(request.Get.get('recipes_limit'))
+        recipes_limit = request.GET.get('recipes_limit')
         queryset = Recipe.objects.filter(author=obj.author)
         if recipes_limit:
-            queryset = queryset[:recipes_limit]
-        return RecipeSerializer(queryset, many=True).data
+            queryset = queryset[:int(recipes_limit)]
+        return RecipeSerializerForFollow(queryset, many=True).data
 
     def get_recipes_count(self, obj):
         return Recipe.objects.filter(author=obj.author).count()

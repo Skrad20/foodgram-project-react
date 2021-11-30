@@ -171,7 +171,7 @@ class ShoppingCart(models.Model):
     )
 
     def __str__(self):
-        return f'{self.user} купит {self.recipe}'
+        return f'{self.user.username} купит {self.recipe.name}'
 
     class Meta:
         db_table = 'ShoppingCarts'

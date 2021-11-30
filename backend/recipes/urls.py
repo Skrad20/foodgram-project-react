@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from backend.recipes.views import (
+from recipes.views import (
     RecipesViewSet,
     IngredientsViewSet,
     TagsViewSet,

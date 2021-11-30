@@ -79,7 +79,7 @@ class UserViewSet(viewsets.ModelViewSet):
             )
 
     @action(
-        detail=True,
+        detail=False,
         methods=['get', ],
         permission_classes=[IsAuthenticated, ],
         name='Личная страница пользователя',
@@ -112,13 +112,13 @@ class UserViewSet(viewsets.ModelViewSet):
 
         user = get_object_or_404(CustomUser, email=request.user)
         queryset = Follow.objects.filter(user=user)
-        print(queryset)
+        page = self.paginate_queryset(queryset)
         serializer = FollowSerializerView(
-            queryset,
+            page,
             many=True,
             context={'request': request}
         )
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return self.get_paginated_response(serializer.data)
 
     @action(
         detail=True,
