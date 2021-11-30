@@ -2,7 +2,6 @@ from django.db import models
 from django.core import validators
 from django.contrib import admin
 from django.utils.html import format_html
-from .config import COLOR_CHOICES
 from .fields import ColorField
 from users.models import (
     CustomUser,
@@ -190,6 +189,12 @@ class ShoppingCart(models.Model):
         verbose_name = 'Список покупок'
         verbose_name_plural = 'Списки покупок'
         ordering = ['-id']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'recipe'],
+                name='Уникальные рецепты в списке покупок'
+            )
+        ]
 
 
 class Favoritesource(models.Model):
@@ -215,3 +220,9 @@ class Favoritesource(models.Model):
         verbose_name = 'Список избранного'
         verbose_name_plural = 'Списоки избранного'
         ordering = ['-id']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'recipe'],
+                name='Уникальный список рецептов в избранном'
+            )
+        ]

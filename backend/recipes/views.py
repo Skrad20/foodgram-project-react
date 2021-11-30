@@ -14,6 +14,7 @@ from rest_framework import (
 from django.shortcuts import (
     get_object_or_404,
 )
+from .filters import CustomRecipeFilter
 from .serializers import (
     FavoritesourceSerializer,
     IngredientSerializer,
@@ -44,7 +45,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
     '''
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
-    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    filter_backends = (CustomRecipeFilter, OrderingFilter)
     pagination_class = PageNumberPagination
     filterset_fields = (
         'is_favorited',
@@ -82,7 +83,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
         '''
         user = get_object_or_404(CustomUser, email=request.user)
         recipe = get_object_or_404(Recipe, id=pk)
-        print(Favoritesource.objects.filter(user=user))
+        print(self.request.query_params)
         if Favoritesource.objects.filter(
             user=request.user, recipe=recipe
         ).exists():
