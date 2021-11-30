@@ -1,6 +1,9 @@
 from django.db import models
 from django.core import validators
+from django.contrib import admin
+from django.utils.html import format_html
 from .config import COLOR_CHOICES
+from .fields import ColorField
 from users.models import (
     CustomUser,
 )
@@ -13,10 +16,10 @@ class Tag(models.Model):
         verbose_name='Название',
         unique=True,
     )
-    color = models.CharField(
+    color = ColorField(
         max_length=20,
         verbose_name='Цвет',
-        choices=COLOR_CHOICES,
+        default='008000',
     )
     slug = models.SlugField(
         max_length=200,
@@ -32,6 +35,17 @@ class Tag(models.Model):
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
         ordering = ['id']
+
+    @admin.display
+    def colored_name(self):
+        return format_html(
+            '<span style="color: #{};;width=10px;height=10px;""></span>',
+            self.hexcolor,
+        )
+
+
+class TagtAdmin(admin.ModelAdmin):
+    list_display = ('name', 'name_EN', 'color', 'slug', 'colored_name')
 
 
 class Ingredient(models.Model):
@@ -72,12 +86,10 @@ class Recipe(models.Model):
     is_favorited = models.BooleanField(
         verbose_name='Проверка на наличие в избранном',
         blank=True,
-        default=False,
     )
     is_in_shopping_cart = models.BooleanField(
         verbose_name='Проверка на наличие в карте покупок',
         blank=True,
-        default=False,
     )
     name = models.CharField(
         verbose_name='Название рецепта',

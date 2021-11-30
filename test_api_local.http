@@ -52,6 +52,11 @@ content-type: application/json
 
 ###
 GET http://127.0.0.1:8000/api/recipes/47/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+GET http://127.0.0.1:8000/api/recipes/47/
 
 ###
 POST http://127.0.0.1:8000/api/recipes/
@@ -94,7 +99,7 @@ content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
-GET http://127.0.0.1:8000/api/recipes/47/shopping_cart/
+GET http://127.0.0.1:8000/api/recipes/44/shopping_cart/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
@@ -104,7 +109,7 @@ content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
-GET http://127.0.0.1:8000/api/recipes/37/favorite/
+GET http://127.0.0.1:8000/api/recipes/47/favorite/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 

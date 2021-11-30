@@ -3,7 +3,7 @@ from django.template import loader
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.views import Response
 from rest_framework import (
@@ -45,7 +45,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
-    pagination_class = LimitOffsetPagination
+    pagination_class = PageNumberPagination
     filterset_fields = (
         'is_favorited',
         'is_in_shopping_cart',
@@ -82,6 +82,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
         '''
         user = get_object_or_404(CustomUser, email=request.user)
         recipe = get_object_or_404(Recipe, id=pk)
+        print(Favoritesource.objects.filter(user=user))
         if Favoritesource.objects.filter(
             user=request.user, recipe=recipe
         ).exists():
@@ -92,7 +93,9 @@ class RecipesViewSet(viewsets.ModelViewSet):
 
         favorite_cart = Favoritesource.objects.create(user=user, recipe=recipe)
         favorite_cart.save()
+        (Favoritesource.objects.filter(user=user))
         serializer = FavoritesourceSerializer(recipe)
+
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @favorite.mapping.delete
@@ -146,7 +149,6 @@ class RecipesViewSet(viewsets.ModelViewSet):
             shop_cart,
             context={'request': request}
         )
-
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @shopping_cart.mapping.delete
@@ -196,7 +198,6 @@ class RecipesViewSet(viewsets.ModelViewSet):
                     'amount': item[1],
                     'measurement_unit': item[2],
                 }
-        print(shop_list)
         filename = "upload.csv"
         response = HttpResponse(content_type='text/csv')
         response["Content-Disposition"] = f"attachment; filename={filename}"
@@ -234,7 +235,7 @@ class IngredientsViewSet(viewsets.ModelViewSet):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     filter_backends = (OrderingFilter, SearchFilter)
-    pagination_class = LimitOffsetPagination
+    pagination_class = PageNumberPagination
     search_fields = ('^name', 'name*')
     ordering_fields = ('name',)
 

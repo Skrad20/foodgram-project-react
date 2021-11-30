@@ -15,3 +15,12 @@ admin.site.register(Favoritesource)
 admin.site.register(ShoppingCart)
 admin.site.register(Ingredient)
 admin.site.register(IngredAmount)
+
+
+class RecipeAdmin(admin.ModelAdmin):
+    list_filter = ['tag', 'name']
+
+
+class TagtAdmin(admin.ModelAdmin):
+    list_display = ('name', 'name_EN', 'color', 'slug', 'colored_name')
+    list_filter = ["name"]
