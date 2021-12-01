@@ -1,6 +1,5 @@
 from django.db import models
 from django.core import validators
-from django.contrib import admin
 from .fields import ColorField
 from users.models import (
     CustomUser,

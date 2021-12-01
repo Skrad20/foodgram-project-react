@@ -29,5 +29,3 @@ admin.site.register(Favoritesource)
 admin.site.register(ShoppingCart)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(IngredAmount)
-
-
