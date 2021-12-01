@@ -24,6 +24,10 @@ content-type: application/json
 ###
 # личгая страница
 GET http://127.0.0.1:8000/api/users/me/
+
+###
+# личгая страница
+GET http://127.0.0.1:8000/api/users/me/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
@@ -163,6 +167,14 @@ GET http://127.0.0.1:8000/api/users/?is_following=True
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
+
+
+###
+GET  http://127.0.0.1:8000/api/users/subscriptions/?page=1&limit=6&recipes_limit=3
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+
 ###
 # Список подписок
 GET http://127.0.0.1:8000/api/users/subscriptions/
@@ -177,7 +189,7 @@ Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
 # Отписка
-DELETE  http://127.0.0.1:8000/api/users/9/subscribe/
+DELETE  http://127.0.0.1:8000/api/users/8/subscribe/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
