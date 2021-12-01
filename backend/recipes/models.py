@@ -1,7 +1,6 @@
 from django.db import models
 from django.core import validators
 from django.contrib import admin
-from django.utils.html import format_html
 from .fields import ColorField
 from users.models import (
     CustomUser,
@@ -17,7 +16,7 @@ class Tag(models.Model):
         unique=True,
     )
     color = ColorField(
-        max_length=20,
+        max_length=7,
         choices=CHOICES_COLOR,
         verbose_name='Цвет HEX',
         default='#008000',
@@ -36,10 +35,6 @@ class Tag(models.Model):
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
         ordering = ['id']
-
-
-class TagtAdmin(admin.ModelAdmin):
-    list_display = ('name', 'name_EN', 'color', 'slug', 'colored_name')
 
 
 class Ingredient(models.Model):
@@ -68,7 +63,7 @@ class Recipe(models.Model):
     '''Данные по рецептам.'''
     tags = models.ManyToManyField(
         Tag,
-        verbose_name='Теги свяpанные с рецептами',
+        verbose_name='Теги связанные с рецептами',
         related_name='recipes',
     )
     author = models.ForeignKey(

@@ -7,6 +7,11 @@ content-type: application/json
 Authorization: Token dbff2f5c8030e92908bb5712894f5c448539e6f8
 
 ###
+GET http://51.250.21.224/api/users/subscriptions/?page=1&limit=6&recipes_limit=3
+content-type: application/json
+Authorization: Token dbff2f5c8030e92908bb5712894f5c448539e6f8
+
+###
 # Создать пользователя
 POST http://51.250.21.224/api/users/
 content-type: application/json

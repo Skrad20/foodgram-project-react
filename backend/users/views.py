@@ -84,7 +84,7 @@ class UserViewSet(viewsets.ModelViewSet):
     @action(
         detail=False,
         methods=['get', ],
-        permission_classes=[IsAuthenticated, ],
+        permission_classes=[IsAuthenticated],
         name='Личная страница пользователя',
     )
     def me(self, request, pk=None):
@@ -103,8 +103,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=False,
-        methods=['get', ],
-        permission_classes=[IsAuthenticated, ],
+        methods=['GET', ],
+        permission_classes=[IsAuthenticated],
         name='Подписки на пользователей',
     )
     def subscriptions(self, request, id=None):

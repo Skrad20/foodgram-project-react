@@ -9,18 +9,25 @@ from .models import (
 )
 
 
-admin.site.register(Recipe)
-admin.site.register(Tag)
+class RecipeAdmin(admin.ModelAdmin):
+    list_display = ['name', 'author']
+    list_filter = ['name', 'author', 'tags']
+
+
+class IngredientAdmin(admin.ModelAdmin):
+    list_display = ['name', 'measurement_unit']
+    list_filter = ['name']
+
+
+class TagAdmin(admin.ModelAdmin):
+    list_filter = ['name', 'slug']
+
+
+admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(Favoritesource)
 admin.site.register(ShoppingCart)
-admin.site.register(Ingredient)
+admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(IngredAmount)
 
 
-class RecipeAdmin(admin.ModelAdmin):
-    list_filter = ['tag', 'name']
-
-
-class TagtAdmin(admin.ModelAdmin):
-    list_display = ('name', 'name_EN', 'color', 'slug', 'colored_name')
-    list_filter = ["name"]
