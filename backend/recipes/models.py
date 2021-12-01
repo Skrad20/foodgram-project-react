@@ -6,6 +6,7 @@ from .fields import ColorField
 from users.models import (
     CustomUser,
 )
+from .config import CHOICES_COLOR
 
 
 class Tag(models.Model):
@@ -17,8 +18,9 @@ class Tag(models.Model):
     )
     color = ColorField(
         max_length=20,
-        verbose_name='Цвет',
-        default='008000',
+        choices=CHOICES_COLOR,
+        verbose_name='Цвет HEX',
+        default='#008000',
     )
     slug = models.SlugField(
         max_length=200,
@@ -34,13 +36,6 @@ class Tag(models.Model):
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
         ordering = ['id']
-
-    @admin.display
-    def colored_name(self):
-        return format_html(
-            '<span style="color: #{};;width=10px;height=10px;""></span>',
-            self.hexcolor,
-        )
 
 
 class TagtAdmin(admin.ModelAdmin):
