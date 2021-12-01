@@ -3,16 +3,17 @@ from django.template import loader
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.views import Response
 from rest_framework import (
     viewsets,
     status,
 )
+from rest_framework.permissions import AllowAny
 from django.shortcuts import (
     get_object_or_404,
 )
+from .pagination import CustomPagination
 from .serializers import (
     FavoritesourceSerializer,
     IngredientSerializer,
@@ -46,7 +47,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
     serializer_class = RecipeSerializer
     filterset_class = FilterRecipe
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter, )
-    pagination_class = PageNumberPagination
+    pagination_class = CustomPagination
     filterset_fields = (
         'is_favorited',
         'is_in_shopping_cart',
@@ -223,7 +224,7 @@ class TagsViewSet(viewsets.ModelViewSet):
     '''
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
-    filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]
+    permission_classes = [AllowAny]
 
 
 class IngredientsViewSet(viewsets.ModelViewSet):
@@ -236,7 +237,7 @@ class IngredientsViewSet(viewsets.ModelViewSet):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     filter_backends = (OrderingFilter, SearchFilter)
-    pagination_class = PageNumberPagination
+    pagination_class = CustomPagination
     search_fields = ('^name', 'name*')
     ordering_fields = ('name',)
 
