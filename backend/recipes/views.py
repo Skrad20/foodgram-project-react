@@ -10,11 +10,9 @@ from rest_framework import (
     viewsets,
     status,
 )
-
 from django.shortcuts import (
     get_object_or_404,
 )
-from .filters import CustomRecipeFilter
 from .serializers import (
     FavoritesourceSerializer,
     IngredientSerializer,
@@ -22,7 +20,7 @@ from .serializers import (
     TagSerializer,
     RecipeSerializer,
 )
-
+from .filters import FilterRecipe
 from users.models import CustomUser
 from .models import (
     Recipe,
@@ -43,9 +41,11 @@ class RecipesViewSet(viewsets.ModelViewSet):
     'recipes/id/favorite/'
     'recipes/id/shopping_cart/'
     '''
+
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
-    filter_backends = (CustomRecipeFilter, OrderingFilter)
+    filterset_class = FilterRecipe
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter, )
     pagination_class = PageNumberPagination
     filterset_fields = (
         'is_favorited',

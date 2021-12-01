@@ -22,11 +22,13 @@ GET http://127.0.0.1:8000/api/users/4/
 content-type: application/json
 
 ###
+# личгая страница
 GET http://127.0.0.1:8000/api/users/me/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
+# Получение токена
 POST http://127.0.0.1:8000/api/auth/token/login/
 content-type: application/json
 
@@ -37,6 +39,7 @@ content-type: application/json
 
 
 ###
+# Смена пароля
 POST http://127.0.0.1:8000/api/users/set_password/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
@@ -47,18 +50,38 @@ Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 }
 
 ###
+# Рецепты
+GET http://127.0.0.1:8000/api/recipes/
+content-type: application/json
+###
+# рецепты
+GET http://127.0.0.1:8000/api/recipes/
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+# Рецепты в избранном
+GET http://127.0.0.1:8000/api/recipes/?is_favorited=True
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+# Рецепты
 GET http://127.0.0.1:8000/api/recipes/
 content-type: application/json
 
 ###
+# Рецепт
 GET http://127.0.0.1:8000/api/recipes/47/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
+# Рецепт
 GET http://127.0.0.1:8000/api/recipes/47/
 
 ###
+# Создание рецепта
 POST http://127.0.0.1:8000/api/recipes/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
@@ -84,64 +107,86 @@ Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 }
 
 ###
+# Теги
 GET http://127.0.0.1:8000/api/tags/
 
 ###
+# Несуществующий тэг
 GET http://127.0.0.1:8000/api/tags/454453/
 
 ###
+# Тэг
 GET http://127.0.0.1:8000/api/tags/1/
+
+###
+# Лист рецептов в карте покупок
+GET http://127.0.0.1:8000/api/recipes/?is_in_shopping_cart=true
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 
 ###
+# Скачать карту покупок
 GET http://127.0.0.1:8000/api/recipes/download_shopping_cart/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
+# Добавить в карту покупок
 GET http://127.0.0.1:8000/api/recipes/44/shopping_cart/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
-DELETE http://127.0.0.1:8000/api/recipes/47/shopping_cart/
+# Удалить из карты покупок
+DELETE http://127.0.0.1:8000/api/recipes/44/shopping_cart/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
+# Добавить в избранное
 GET http://127.0.0.1:8000/api/recipes/47/favorite/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 
 ###
-DELETE http://127.0.0.1:8000/api/recipes/37/favorite/
+# Удалить из избранного
+DELETE http://127.0.0.1:8000/api/recipes/47/favorite/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 
 ###
+# Подписки
+GET http://127.0.0.1:8000/api/users/?is_following=True
+content-type: application/json
+Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+
+###
+# Список подписок
 GET http://127.0.0.1:8000/api/users/subscriptions/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
+# Подписка
 GET http://127.0.0.1:8000/api/users/9/subscribe/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ###
-DELETE  http://127.0.0.1:8000/api/users/3/subscribe/
+# Отписка
+DELETE  http://127.0.0.1:8000/api/users/9/subscribe/
 content-type: application/json
 Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 
 ### 
+# Ингредиенты
 GET http://127.0.0.1:8000/api/ingredients/
 
 
 ###
+# Ингредиент
 GET http://127.0.0.1:8000/api/ingredients/1/
 
-
-### 
-GET http://127.0.0.1:8000/subscriptions

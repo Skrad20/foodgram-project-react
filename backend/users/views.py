@@ -2,7 +2,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.pagination import LimitOffsetPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.shortcuts import (
@@ -37,7 +39,8 @@ class UserViewSet(viewsets.ModelViewSet):
     '''
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-    pagination_class = LimitOffsetPagination
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter, )
+    pagination_class = PageNumberPagination
     permission_classes = [AllowAny, ]
 
     def create(self, request, *args, **kwargs):
