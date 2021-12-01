@@ -1,9 +1,6 @@
-from django.db.models import fields
 from django_filters import rest_framework as filters
-from rest_framework.filters import BaseFilterBackend
 from .models import (
     Recipe,
-    Favoritesource,
     CustomUser,
 )
 
