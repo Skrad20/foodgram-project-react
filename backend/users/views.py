@@ -20,6 +20,7 @@ from .serializers import (
     FollowSerializer,
     PasswordSerializer,
     AuthTokenSerializer,
+    FollowSerializerView,
 )
 from .models import (
     Follow,
@@ -99,6 +100,26 @@ class UserViewSet(viewsets.ModelViewSet):
             context={'request': request}
         )
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @action(
+        detail=False,
+        permission_classes=[IsAuthenticated],
+        name='Подписки на пользователей',
+    )
+    def subscriptions(self, request, id=None):
+        '''
+        Возвращает пользователей, на которых подписан текущий пользователь.
+        В выдачу добавляются рецепты.
+        '''
+        user = get_object_or_404(CustomUser, email=request.user)
+        queryset = Follow.objects.filter(user=user)
+        page = self.paginate_queryset(queryset)
+        serializer = FollowSerializerView(
+            page,
+            many=True,
+            context={'request': request}
+        )
+        return self.get_paginated_response(serializer.data)
 
     @action(
         detail=True,
