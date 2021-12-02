@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
+from django_filters import filterset
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
@@ -21,7 +22,10 @@ from .serializers import (
     TagSerializer,
     RecipeSerializer,
 )
-from .filters import FilterRecipe
+from .filters import (
+    FilterRecipe,
+    IngredientFilter,
+)
 from users.models import CustomUser
 from .models import (
     Recipe,
@@ -237,8 +241,9 @@ class IngredientsViewSet(viewsets.ModelViewSet):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     filter_backends = (OrderingFilter, SearchFilter)
+    filterset_class = IngredientFilter
     pagination_class = CustomPagination
-    search_fields = ('^name', 'name*')
+    search_fields = ('^name', 'name*', '')
     ordering_fields = ('name',)
 
 

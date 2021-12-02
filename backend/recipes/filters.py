@@ -2,11 +2,21 @@ from django_filters import rest_framework as filters
 from .models import (
     Recipe,
     CustomUser,
+    Ingredient,
 )
 
 
+class IngredientFilter(filters.FilterSet):
+    '''Фильтрует ингредиенты по названию'''
+    name = filters.CharFilter(field_name='name', lookup_expr='startswith')
+
+    class Meta:
+        model = Ingredient
+        fields = ['name']
+
+
 class FilterRecipe(filters.FilterSet):
-    """Filter for Books by if books are published or not"""
+    '''Фтльтрует рецепты по нахлждению в карте покупок и в избранном.'''
 
     tags = filters.AllValuesMultipleFilter(field_name='tags__slug')
     author = filters.ModelChoiceFilter(queryset=CustomUser.objects.all())
