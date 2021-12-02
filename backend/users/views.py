@@ -100,28 +100,6 @@ class UserViewSet(viewsets.ModelViewSet):
             context={'request': request}
         )
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-    @action(
-        detail=False,
-        permission_classes=[IsAuthenticated],
-        name='Подписки на пользователей',
-    )
-    def subscriptions(self, request, id=None):
-        '''
-        Возвращает пользователей, на которых подписан текущий пользователь.
-        В выдачу добавляются рецепты.
-        '''
-        print(request.query_params.get(''))
-        user = get_object_or_404(CustomUser, email=request.user)
-        queryset = Follow.objects.filter(user=user)
-        page = self.paginate_queryset(queryset)
-        serializer = FollowSerializerView(
-            page,
-            many=True,
-            context={'request': request}
-        )
-        return self.get_paginated_response(serializer.data)
-
     @action(
         detail=True,
         permission_classes=[IsAuthenticated],
@@ -206,7 +184,21 @@ class FollowsViewSet(viewsets.ModelViewSet):
     Возвращает данные по подпискам.
     Отвечает по адресам:
     'users/subscriptions/'
-    'users/id/subscribe/'
     '''
-    queryset = Follow.objects.all()
     serializer_class = FollowSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'author_id'
+
+    def get_queryset(self):
+        user = self.request.user
+        return Follow.objects.filter(user=user)
+
+    def perform_create(self, serializer):
+        author = get_object_or_404(CustomUser, pk=self.kwargs.get('author_id'))
+        serializer.save(user=self.request.user, author=author)
+
+    def perform_destroy(self, instance):
+        user = self.request.user
+        author = get_object_or_404(CustomUser, pk=self.kwargs.get('author_id'))
+        follow = get_object_or_404(Follow, user=user, author=author)
+        follow.delete()

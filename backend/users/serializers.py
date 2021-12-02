@@ -54,7 +54,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class RecipeSerializerForFollow(serializers.ModelSerializer):
     '''Сериализатор данных по рецептам.'''
-    author = UserSerializer(read_only=True)
     image = Base64ImageField(read_only=True)
 
     class Meta:
