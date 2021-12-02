@@ -111,7 +111,7 @@ class UserViewSet(viewsets.ModelViewSet):
         Возвращает пользователей, на которых подписан текущий пользователь.
         В выдачу добавляются рецепты.
         '''
-
+        print(request.query_params.get(''))
         user = get_object_or_404(CustomUser, email=request.user)
         queryset = Follow.objects.filter(user=user)
         page = self.paginate_queryset(queryset)
