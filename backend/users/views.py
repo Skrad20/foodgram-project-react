@@ -20,7 +20,6 @@ from .serializers import (
     FollowSerializer,
     PasswordSerializer,
     AuthTokenSerializer,
-    FollowSerializerView,
 )
 from .models import (
     Follow,
@@ -100,6 +99,7 @@ class UserViewSet(viewsets.ModelViewSet):
             context={'request': request}
         )
         return Response(serializer.data, status=status.HTTP_200_OK)
+
     @action(
         detail=True,
         permission_classes=[IsAuthenticated],
