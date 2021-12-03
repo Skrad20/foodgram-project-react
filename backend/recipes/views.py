@@ -13,7 +13,10 @@ from rest_framework.permissions import AllowAny
 from django.shortcuts import (
     get_object_or_404,
 )
-from .pagination import CustomPagination
+from .pagination import (
+    CustomPagination,
+    PageNumberPaginationDataOnly
+)
 from .serializers import (
     FavoritesourceSerializer,
     IngredientSerializer,
@@ -233,7 +236,7 @@ class TagsViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = [AllowAny]
-    pagination_class = None
+    pagination_class = PageNumberPaginationDataOnly
 
 
 class IngredientsViewSet(viewsets.ModelViewSet):
@@ -247,7 +250,7 @@ class IngredientsViewSet(viewsets.ModelViewSet):
     serializer_class = IngredientSerializer
     filter_backends = (OrderingFilter, SearchFilter)
     filterset_class = IngredientFilter
-    pagination_class = None
+    pagination_class = PageNumberPaginationDataOnly
     search_fields = ('^name', 'name*', '')
     ordering_fields = ('name',)
 
