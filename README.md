@@ -122,7 +122,7 @@ Yandex.Practicum, Евдокимов Е.Г.
 
 # 8. Полезные материалы
 
-* [Работа с базами данными](https://the-bosha.ru/2016/06/29/django-delaem-damp-bazy-dannykh-i-vosstanavlpythonivaem-iz-nego-s-dumpdata-i-loaddata/)
+* [Работа с базами данными](https://the-bosha.ru/2016/06/29/django-delaem-damp-bazy-dannykh-i-vosstanavlivaem-iz-nego-s-dumpdata-i-loaddata/)
 
 * [Документация Sqlite3](https://sqlite.com/matrix/cli.html)
 
