@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from django.template import loader
-from django_filters import filterset
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
