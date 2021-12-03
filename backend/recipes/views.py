@@ -20,6 +20,7 @@ from .serializers import (
     ShoppingCartSerializer,
     TagSerializer,
     RecipeSerializer,
+    CreateRecipeSerializer
 )
 from .filters import (
     FilterRecipe,
@@ -47,7 +48,6 @@ class RecipesViewSet(viewsets.ModelViewSet):
     '''
 
     queryset = Recipe.objects.all()
-    serializer_class = RecipeSerializer
     filterset_class = FilterRecipe
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter, )
     pagination_class = CustomPagination
@@ -59,6 +59,11 @@ class RecipesViewSet(viewsets.ModelViewSet):
     )
     search_fields = ('name', 'text', 'ingredients__name')
     ordering_fields = ('name', 'pub_date')
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return RecipeSerializer
+        return CreateRecipeSerializer
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
