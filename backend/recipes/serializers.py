@@ -225,12 +225,11 @@ class CreateRecipeSerializer(RecipeSerializer):
         )
 
     def to_representation(self, recipe):
-        data = RecipeSerializer(
+        return RecipeSerializer(
             recipe, context={
                 'request': self.context.get('request')
             }
         ).data
-        return data
 
 
 class ShoppingCartSerializer(serializers.ModelSerializer):
