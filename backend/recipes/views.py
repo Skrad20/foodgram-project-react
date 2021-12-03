@@ -247,7 +247,7 @@ class IngredientsViewSet(viewsets.ModelViewSet):
     serializer_class = IngredientSerializer
     filter_backends = (OrderingFilter, SearchFilter)
     filterset_class = IngredientFilter
-    pagination_class = CustomPagination
+    pagination_class = None
     search_fields = ('^name', 'name*', '')
     ordering_fields = ('name',)
 
