@@ -221,11 +221,12 @@ class RecipesViewSet(viewsets.ModelViewSet):
 
         data = ['Список ингредиентов', ]
         for key in shop_list.keys():
-            amount_res = shop_list[key]['amount']
-            unit = shop_list[key]['measurement_unit']
-            data.append(f'{key}: {amount_res} {unit}')
+            key_res = key.encode('cp1251')
+            amount_res = (shop_list[key]['amount']).encode('cp1251')
+            unit = (shop_list[key]['measurement_unit']).encode('cp1251')
+            data.append(f'{key_res}: {amount_res} {unit}')
         resuolt = {'data': data}
-        response.write(template.render(resuolt).encode("utf-8"))
+        response.write(template.render(resuolt))
         return response
 
 
