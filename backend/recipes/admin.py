@@ -15,7 +15,7 @@ class RecipeAdmin(admin.ModelAdmin):
     search_fields = ['^name', '^author', '^tags']
 
     def get_favorited(self, obj):
-        return  Favoritesource.objects.filter(recipe=obj).count()
+        return Favoritesource.objects.filter(recipe=obj).count()
 
 
 class IngredientAdmin(admin.ModelAdmin):
