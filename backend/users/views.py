@@ -57,7 +57,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=True,
-        methods=['post'],
+        methods=['POST'],
         permission_classes=[IsAuthenticated, ],
         name='Изменение пароля',
     )
@@ -83,7 +83,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=False,
-        methods=['get', ],
+        methods=['GET', ],
         permission_classes=[IsAuthenticated],
         name='Личная страница пользователя',
     )

@@ -86,7 +86,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
     @action(
         detail=True,
         permission_classes=[IsAuthenticated],
-        methods=['get', ],
+        methods=['GET', ],
         name='Скачивание карты покупок',
     )
     def favorite(self, request, pk=None):
@@ -138,7 +138,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=True,
-        methods=['get', ],
+        methods=['GET', ],
         permission_classes=[IsAuthenticated],
         name='Скачивание карты покупок',
     )
@@ -187,7 +187,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=False,
-        methods=['get', ],
+        methods=['GET', ],
         permission_classes=[IsAuthenticated],
         name='Скачивание карты покупок',
     )
@@ -265,6 +265,7 @@ class ShoppingCartViewSer(viewsets.ModelViewSet):
     queryset = ShoppingCart.objects.all()
     serializer_class = ShoppingCartSerializer
     filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]
+    permission_classes = [IsAuthenticated]
 
 
 class FavoriteViewSet(viewsets.ModelViewSet):
@@ -276,3 +277,4 @@ class FavoriteViewSet(viewsets.ModelViewSet):
     queryset = Favoritesource.objects.all()
     serializer_class = FavoritesourceSerializer
     filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]
+    permission_classes = [IsAuthenticated]

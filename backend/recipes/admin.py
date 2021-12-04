@@ -12,15 +12,21 @@ from .models import (
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ['name', 'author']
     list_filter = ['name', 'author', 'tags']
+    search_fields = ['^name', '^author', '^tags']
+
+    def get_favorited(self, obj):
+        return  Favoritesource.objects.filter(recipe=obj).count()
 
 
 class IngredientAdmin(admin.ModelAdmin):
     list_display = ['name', 'measurement_unit']
     list_filter = ['name']
+    search_fields = ['^name', 'measurement_unit']
 
 
 class TagAdmin(admin.ModelAdmin):
     list_filter = ['name', 'slug']
+    search_fields = ['^name', '^slug']
 
 
 admin.site.register(Recipe, RecipeAdmin)
