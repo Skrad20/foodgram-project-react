@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from django.template import loader
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
@@ -221,7 +220,9 @@ class RecipesViewSet(viewsets.ModelViewSet):
             data.append(f'{key}: {amount_res} {unit}\n')
         date = datetime.datetime.now
         response = HttpResponse(data, 'Content-Type: text/plain')
-        response['Content-Disposition'] = f'attachment; filename="shoplist_{date}.txt"'
+        response['Content-Disposition'] = (
+            f'attachment; filename="shoplist_{date}.txt"'
+        )
         return response
 
 
