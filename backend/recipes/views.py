@@ -38,6 +38,7 @@ from .models import (
     Favoritesource,
     Ingredient,
 )
+import datetime
 
 
 class RecipesViewSet(viewsets.ModelViewSet):
@@ -212,7 +213,8 @@ class RecipesViewSet(viewsets.ModelViewSet):
                     'amount': item[1],
                     'measurement_unit': item[2],
                 }
-        filename = "upload.csv"
+        date = datetime.datetime.now()
+        filename = f'Список покупок {date}.csv'
         response = HttpResponse(content_type='text/csv')
         response["Content-Disposition"] = f"attachment; filename={filename}"
         template = loader.get_template('upload_template.txt')
@@ -223,7 +225,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
             unit = shop_list[key]['measurement_unit']
             data.append(f'{key}: {amount_res} {unit}')
         resuolt = {'data': data}
-        response.write(template.render(resuolt))
+        response.write(template.render(resuolt).encode("utf-8"))
         return response
 
 

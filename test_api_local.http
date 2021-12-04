@@ -143,13 +143,13 @@ Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 # Скачать карту покупок
 GET http://127.0.0.1:8000/api/recipes/download_shopping_cart/
 content-type: application/json
-Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+Authorization: Token 14493d0c7af7e8716f51515e414c139386c377d6
 
 ###
 # Добавить в карту покупок
-GET http://127.0.0.1:8000/api/recipes/44/shopping_cart/
+GET http://127.0.0.1:8000/api/recipes/1/shopping_cart/
 content-type: application/json
-Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+Authorization: Token 14493d0c7af7e8716f51515e414c139386c377d6
 
 ###
 # Удалить из карты покупок
