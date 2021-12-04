@@ -213,20 +213,15 @@ class RecipesViewSet(viewsets.ModelViewSet):
                     'amount': item[1],
                     'measurement_unit': item[2],
                 }
-        date = datetime.datetime.now()
-        filename = f'Список покупок {date}.csv'
-        response = HttpResponse(content_type='text/csv')
-        response["Content-Disposition"] = f"attachment; filename={filename}"
-        template = loader.get_template('upload_template.txt')
 
-        data = ['Список ингредиентов', ]
+        data = ['Список ингредиентов\n', ]
         for key in shop_list.keys():
-            key_res = key.encode('cp1251')
-            amount_res = (shop_list[key]['amount']).encode('cp1251')
-            unit = (shop_list[key]['measurement_unit']).encode('cp1251')
-            data.append(f'{key_res}: {amount_res} {unit}')
-        resuolt = {'data': data}
-        response.write(template.render(resuolt))
+            amount_res = (shop_list[key]['amount'])
+            unit = (shop_list[key]['measurement_unit'])
+            data.append(f'{key}: {amount_res} {unit}\n')
+        date = datetime.datetime.now
+        response = HttpResponse(data, 'Content-Type: text/plain')
+        response['Content-Disposition'] = f'attachment; filename="shoplist_{date}.txt"'
         return response
 
 
