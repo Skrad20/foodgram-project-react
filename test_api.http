@@ -38,8 +38,8 @@ POST http://51.250.21.224/api/auth/token/login/
 content-type: application/json
 
 {
-    "email": "Gagr@gaga.ru",
-    "password": "FFFwhdsdgwh2313"
+    "email": "admin@admin.ru",
+    "password": "admin"
 }
 
 
@@ -63,7 +63,7 @@ GET http://51.250.21.224/api/recipes/36/
 ###
 POST http://51.250.21.224/api/recipes/
 content-type: application/json
-Authorization: Token dbff2f5c8030e92908bb5712894f5c448539e6f8
+Authorization: Token 06b1e26f8bd131629e6ce31dbaded2046f7c7b1a
 
 {
     "name": "dsdgfdsgsdf",

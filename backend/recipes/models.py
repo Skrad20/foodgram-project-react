@@ -71,14 +71,6 @@ class Recipe(models.Model):
         verbose_name='Автор рецепта',
         related_name='recipes',
     )
-    is_favorited = models.BooleanField(
-        verbose_name='Проверка на наличие в избранном',
-        blank=True,
-    )
-    is_in_shopping_cart = models.BooleanField(
-        verbose_name='Проверка на наличие в карте покупок',
-        blank=True,
-    )
     name = models.CharField(
         verbose_name='Название рецепта',
         max_length=500,

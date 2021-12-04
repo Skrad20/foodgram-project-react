@@ -49,8 +49,9 @@ class RecipesViewSet(viewsets.ModelViewSet):
     'recipes/id/favorite/'
     'recipes/id/shopping_cart/'
     '''
-
+    serializer_class = RecipeSerializer
     queryset = Recipe.objects.all()
+    permission_classes = [AllowAny]
     filterset_class = FilterRecipe
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter, )
     pagination_class = CustomPagination
@@ -251,7 +252,7 @@ class IngredientsViewSet(viewsets.ModelViewSet):
     filter_backends = (OrderingFilter, SearchFilter)
     filterset_class = IngredientFilter
     pagination_class = PageNumberPaginationDataOnly
-    search_fields = ('^name', 'name*', '')
+    search_fields = ('^name',)
     ordering_fields = ('name',)
 
 
