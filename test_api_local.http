@@ -85,7 +85,13 @@ Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
 GET http://127.0.0.1:8000/api/recipes/
 
 ###
-GET http://127.0.0.1:8000/api/recipes/?page=1&limit=6&tags=lauch
+GET http://127.0.0.1:8000/api/ingredients/
+
+###
+GET http://127.0.0.1:8000/api/ingredients/?name=кар
+
+###
+GET http://127.0.0.1:8000/api/recipes/?page=1&limit=6&tags=breakfast
 
 
 ###
