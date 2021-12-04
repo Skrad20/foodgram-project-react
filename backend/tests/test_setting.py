@@ -4,7 +4,7 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'backend.foodgram.settings'
 
 
-class test_db(TestCase):
+class TestDb(TestCase):
     'Проверка названия базы данных.'
     def test_db(self):
         db_name = connection.settings_dict['NAME']
