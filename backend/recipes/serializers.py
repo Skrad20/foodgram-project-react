@@ -44,14 +44,15 @@ class IngredAmountSerializer(serializers.ModelSerializer):
 
 class RecipeSerializer(serializers.ModelSerializer):
     '''Сериализатор данных по рецептам.'''
+
+    author = UserSerializer(read_only=True)
     ingredients = IngredAmountSerializer(
         source="ingredients_amounts",
         many=True,
         read_only=True,
     )
-    author = UserSerializer(read_only=True)
     tags = TagSerializer(many=True, read_only=True)
-    image = Base64ImageField()
+    image = Base64ImageField(read_only=True)
     cooking_time = serializers.IntegerField()
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
@@ -266,7 +267,6 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
             )
 
     def create(self, validated_data):
-        print(validated_data)
         image = validated_data.pop('image')
         tags_data = validated_data.pop('tags')
         ingredients_data = validated_data.pop('ingredients')

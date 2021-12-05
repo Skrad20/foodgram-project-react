@@ -11,13 +11,16 @@ __*Foodgram*__
 
 # 3. Технологии в проекте
 
-* [![Python 3.7](https://www.python.org/static/img/python-logo@2x.png)](https://www.python.org/)
-* Django 2.2.19
-* Gunicorn 20.1.0
-* PostgreSQL
-* Docker
-* Docker-compose
-* NGINX
+* [Python 3.7](https://www.python.org/)
+* [Django 2.2.19](https://www.djangoproject.com/)
+* [Django REST framework](https://www.django-rest-framework.org/)
+* [Gunicorn 20.1.0](https://gunicorn.org/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [Docker](https://www.docker.com/)
+* [Docker-compose](https://docs.docker.com/compose/reference/build/)
+* [NGINX](https://nginx.org/ru/)
+* [Yandex.Cloud](https://cloud.yandex.ru/)
+* [GitHub](https://github.com/features/actions)
 
 # 4. Инструкции по запуску
 
@@ -119,6 +122,8 @@ Yandex.Practicum, Евдокимов Е.Г.
 # 7. Посмотреть проект
 
 [Можно тут](http://51.250.21.224/)
+
+
 
 # 8. Полезные материалы
 
