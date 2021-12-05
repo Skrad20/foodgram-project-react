@@ -9,12 +9,17 @@ from .models import (
 )
 
 
+class IngredientAmountInLine(admin.TabularInline):
+    model = IngredAmount
+
+
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ['name', 'author']
+    list_display = ['name', 'author', 'favorited']
     list_filter = ['name', 'author', 'tags']
     search_fields = ['^name', '^author', '^tags']
+    inlines = [IngredientAmountInLine]
 
-    def get_favorited(self, obj):
+    def favorited(self, obj):
         return Favoritesource.objects.filter(recipe=obj).count()
 
 
