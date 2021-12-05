@@ -16,7 +16,7 @@ class IngredientAmountInLine(admin.TabularInline):
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ['name', 'author', 'favorited']
     list_filter = ['name', 'author', 'tags']
-    search_fields = ['^name', '^author', '^tags']
+    search_fields = ['^name', ]
     inlines = [IngredientAmountInLine]
 
     def favorited(self, obj):
