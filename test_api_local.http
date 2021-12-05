@@ -29,7 +29,7 @@ GET http://127.0.0.1:8000/api/users/me/
 # личгая страница
 GET http://127.0.0.1:8000/api/users/me/
 content-type: application/json
-Authorization: Token a833a4ad163dd459e05e52a6e5f1821ed95ea7d2
+Authorization: Token 14493d0c7af7e8716f51515e414c139386c377d6
 
 ###
 # Получение токена

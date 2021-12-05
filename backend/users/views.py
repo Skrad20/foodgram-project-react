@@ -99,7 +99,7 @@ class UserViewSet(viewsets.ModelViewSet):
             many=True,
             context={'request': request}
         )
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data[0], status=status.HTTP_200_OK)
 
     @action(
         detail=False,
