@@ -83,26 +83,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=False,
-        methods=['GET', ],
-        permission_classes=[IsAuthenticated],
-        name='Личная страница пользователя',
-    )
-    def me(self, request, pk=None):
-        '''
-        Личная страница пользователя.
-        Только авторизованные.
-        '''
-        user = get_object_or_404(CustomUser, email=request.user)
-        queryset = CustomUser.objects.filter(email=user)
-        serializer = UserSerializer(
-            queryset,
-            many=True,
-            context={'request': request}
-        )
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    @action(
-        detail=False,
         permission_classes=[IsAuthenticated],
         name='Подписки на пользователей',
     )
