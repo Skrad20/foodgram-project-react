@@ -123,6 +123,9 @@ Yandex.Practicum, Евдокимов Е.Г.
 
 [Можно тут](http://51.250.21.224/)
 
+email: admin@admin.ru
+password: admin
+
 
 
 # 8. Полезные материалы
