@@ -90,6 +90,10 @@ class RecipesViewSet(viewsets.ModelViewSet):
         )
         if recipe.author.id == user.id:
             return serializer.save()
+        return Response(
+            serializer.data,
+            status=status.HTTP_403_FORBIDDEN,
+        )
 
     @action(
         detail=True,
