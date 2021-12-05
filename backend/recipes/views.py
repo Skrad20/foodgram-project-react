@@ -83,6 +83,14 @@ class RecipesViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         return serializer.save(author=self.request.user)
 
+    def perform_update(self, serializer):
+        user = self.request.user
+        recipe = get_object_or_404(
+            Recipe, id=self.kwargs.get('pk')
+        )
+        if recipe.author.id == user.id:
+            return serializer.save()
+
     @action(
         detail=True,
         permission_classes=[IsAuthenticated],
