@@ -11,7 +11,7 @@ __*Foodgram*__
 
 # 3. Технологии в проекте
 
-* [!Python 3.7](https://www.python.org/)
+* ![Python 3.7](https://www.python.org/)
 * Django 2.2.19
 * Gunicorn 20.1.0
 * PostgreSQL
