@@ -56,7 +56,7 @@ class UserViewSet(viewsets.ModelViewSet):
         )
 
     @action(
-        detail=True,
+        detail=False,
         methods=['POST'],
         permission_classes=[IsAuthenticated, ],
         name='Изменение пароля',
