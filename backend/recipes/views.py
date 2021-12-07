@@ -1,43 +1,20 @@
 from django.http import HttpResponse
-from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import status, viewsets
+from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import Response
-from rest_framework import (
-    viewsets,
-    status,
-)
-from rest_framework.permissions import AllowAny
-from django.shortcuts import (
-    get_object_or_404,
-)
-from .pagination import (
-    CustomPagination,
-    PageNumberPaginationDataOnly
-)
-from .serializers import (
-    FavoritesourceSerializer,
-    IngredientSerializer,
-    ShoppingCartSerializer,
-    TagSerializer,
-    RecipeSerializer,
-    CreateRecipeSerializer
-)
-from .filters import (
-    FilterRecipe,
-    IngredientFilter,
-)
-from users.models import CustomUser
-from .models import (
-    Recipe,
-    IngredAmount,
-    Tag,
-    ShoppingCart,
-    Favoritesource,
-    Ingredient,
-)
-import datetime
+
+from .filters import FilterRecipe, IngredientFilter
+from .models import (Favorite, IngredAmount, Ingredient, Recipe, ShoppingCart,
+                     Tag)
+from .pagination import CustomPagination, PageNumberPaginationDataOnly
+from .serializers import (CreateRecipeSerializer, FavoriteSerializer,
+                          IngredientSerializer, RecipeSerializer,
+                          ShoppingCartSerializer, TagSerializer)
 
 
 class RecipesViewSet(viewsets.ModelViewSet):
@@ -69,31 +46,8 @@ class RecipesViewSet(viewsets.ModelViewSet):
             return RecipeSerializer
         return CreateRecipeSerializer
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(
-            serializer.data,
-            status=status.HTTP_201_CREATED,
-            headers=headers
-        )
-
     def perform_create(self, serializer):
-        return serializer.save(author=self.request.user)
-
-    def perform_update(self, serializer):
-        user = self.request.user
-        recipe = get_object_or_404(
-            Recipe, id=self.kwargs.get('pk')
-        )
-        if recipe.author.id == user.id:
-            return serializer.save()
-        return Response(
-            serializer.data,
-            status=status.HTTP_403_FORBIDDEN,
-        )
+        serializer.save(author=self.request.user)
 
     @action(
         detail=True,
@@ -106,10 +60,8 @@ class RecipesViewSet(viewsets.ModelViewSet):
         Реализует добавление в избранное рецепта.
         Доступно только авторизованным пользователям.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
         recipe = get_object_or_404(Recipe, id=pk)
-        print(self.request.query_params)
-        if Favoritesource.objects.filter(
+        if Favorite.objects.filter(
             user=request.user, recipe=recipe
         ).exists():
             data = {
@@ -117,10 +69,12 @@ class RecipesViewSet(viewsets.ModelViewSet):
             }
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
-        favorite_cart = Favoritesource.objects.create(user=user, recipe=recipe)
+        favorite_cart = Favorite.objects.create(
+            user=request.user,
+            recipe=recipe
+        )
         favorite_cart.save()
-        (Favoritesource.objects.filter(user=user))
-        serializer = FavoritesourceSerializer(recipe)
+        serializer = FavoriteSerializer(recipe)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -130,9 +84,8 @@ class RecipesViewSet(viewsets.ModelViewSet):
         Реализует удаление рецепта из избранного.
         Доступно только авторизованным пользователям.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
         recipe = get_object_or_404(Recipe, id=pk)
-        if not Favoritesource.objects.filter(
+        if not Favorite.objects.filter(
             user=request.user, recipe=recipe
         ).exists():
             data = {
@@ -141,8 +94,8 @@ class RecipesViewSet(viewsets.ModelViewSet):
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
         favorite_cart = get_object_or_404(
-            Favoritesource,
-            user=user,
+            Favorite,
+            user=request.user,
             recipe=recipe
         )
         favorite_cart.delete()
@@ -159,7 +112,6 @@ class RecipesViewSet(viewsets.ModelViewSet):
         Добавление рецепта в список покупок.
         Доступно только авторизованным пользователям.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
         recipe = get_object_or_404(Recipe, id=pk)
         if ShoppingCart.objects.filter(
             user=request.user, recipe=recipe
@@ -169,7 +121,10 @@ class RecipesViewSet(viewsets.ModelViewSet):
             }
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
-        shop_cart = ShoppingCart.objects.create(user=user, recipe=recipe)
+        shop_cart = ShoppingCart.objects.create(
+            user=request.user,
+            recipe=recipe
+        )
         shop_cart.save()
         serializer = ShoppingCartSerializer(
             shop_cart,
@@ -183,7 +138,6 @@ class RecipesViewSet(viewsets.ModelViewSet):
         Реализует удаление рецепта из избранного.
         Доступно только авторизованным пользователям.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
         recipe = get_object_or_404(Recipe, id=pk)
         if not ShoppingCart.objects.filter(
             user=request.user, recipe=recipe
@@ -193,7 +147,11 @@ class RecipesViewSet(viewsets.ModelViewSet):
             }
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
-        shop_cart = get_object_or_404(ShoppingCart, user=user, recipe=recipe)
+        shop_cart = get_object_or_404(
+            ShoppingCart,
+            user=request.user,
+            recipe=recipe
+        )
         shop_cart.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -230,7 +188,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
             amount_res = (shop_list[key]['amount'])
             unit = (shop_list[key]['measurement_unit'])
             data.append(f'{key}: {amount_res} {unit}\n')
-        date = datetime.datetime.now
+        date = timezone.now()
         response = HttpResponse(data, 'Content-Type: text/plain')
         response['Content-Disposition'] = (
             f'attachment; filename="shoplist_{date}.txt"'
@@ -286,7 +244,7 @@ class FavoriteViewSet(viewsets.ModelViewSet):
     Отвечает по адресам:
     'recipes/id/favorite/'
     '''
-    queryset = Favoritesource.objects.all()
-    serializer_class = FavoritesourceSerializer
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
     filter_backends = [OrderingFilter, DjangoFilterBackend, SearchFilter]
     permission_classes = [IsAuthenticated]

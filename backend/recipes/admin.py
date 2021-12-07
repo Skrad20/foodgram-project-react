@@ -1,12 +1,7 @@
 from django.contrib import admin
-from .models import (
-    Recipe,
-    Tag,
-    ShoppingCart,
-    Favoritesource,
-    Ingredient,
-    IngredAmount
-)
+
+from .models import (Favorite, IngredAmount, Ingredient, Recipe, ShoppingCart,
+                     Tag)
 
 
 class IngredientAmountInLine(admin.TabularInline):
@@ -20,7 +15,7 @@ class RecipeAdmin(admin.ModelAdmin):
     inlines = [IngredientAmountInLine]
 
     def favorited(self, obj):
-        return Favoritesource.objects.filter(recipe=obj).count()
+        return Favorite.objects.filter(recipe=obj).count()
 
 
 class IngredientAdmin(admin.ModelAdmin):
@@ -36,7 +31,7 @@ class TagAdmin(admin.ModelAdmin):
 
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Tag, TagAdmin)
-admin.site.register(Favoritesource)
+admin.site.register(Favorite)
 admin.site.register(ShoppingCart)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(IngredAmount)

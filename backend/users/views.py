@@ -1,31 +1,19 @@
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from recipes.pagination import CustomPagination
-from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework import status, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from django.shortcuts import (
-    get_object_or_404,
-)
-from rest_framework import (
-    viewsets,
-    status,
-)
-from .serializers import (
-    UserSerializer,
-    CustomUserCreateSerializer,
-    FollowSerializer,
-    PasswordSerializer,
-    AuthTokenSerializer,
-    FollowSerializerView,
-)
-from .models import (
-    Follow,
-    CustomUser,
-)
+from rest_framework.decorators import action
+from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import CustomUser, Follow
+from .serializers import (AuthTokenSerializer, CustomUserCreateSerializer,
+                          FollowSerializer, FollowSerializerView,
+                          PasswordSerializer, UserSerializer)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -43,8 +31,13 @@ class UserViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
     permission_classes = [AllowAny, ]
 
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return UserSerializer
+        return CustomUserCreateSerializer
+
     def create(self, request, *args, **kwargs):
-        serializer = CustomUserCreateSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -66,20 +59,9 @@ class UserViewSet(viewsets.ModelViewSet):
         Реализует механизм смены пароля.
         Только POST запросы и только авторизованные.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
         serializer = PasswordSerializer(data=request.data)
-        if serializer.is_valid():
-            user.set_password(serializer.validated_data['new_password'])
-            user.save()
-            return Response(
-                serializer.data,
-                status=status.HTTP_204_NO_CONTENT
-            )
-        else:
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
 
     @action(
         detail=False,
@@ -92,8 +74,7 @@ class UserViewSet(viewsets.ModelViewSet):
         Личная страница пользователя.
         Только авторизованные.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
-        queryset = CustomUser.objects.filter(email=user)
+        queryset = CustomUser.objects.filter(email=request.user)
         serializer = UserSerializer(
             queryset,
             many=True,
@@ -111,8 +92,7 @@ class UserViewSet(viewsets.ModelViewSet):
         Возвращает пользователей, на которых подписан текущий пользователь.
         В выдачу добавляются рецепты.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
-        queryset = Follow.objects.filter(user=user)
+        queryset = Follow.objects.filter(user=request.user)
         page = self.paginate_queryset(queryset)
         serializer = FollowSerializerView(
             page,
@@ -130,9 +110,8 @@ class UserViewSet(viewsets.ModelViewSet):
         '''
         Осуществляет подписку на пользователя.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
         author = get_object_or_404(CustomUser, id=pk)
-        if author == user:
+        if author == request.user:
             data = {
                 'errors': 'Нельзя подписаться на самого себя.'
             }
@@ -146,7 +125,7 @@ class UserViewSet(viewsets.ModelViewSet):
             }
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
-        follow = Follow.objects.create(user=user, author=author)
+        follow = Follow.objects.create(user=request.user, author=author)
         follow.save()
 
         serializer = FollowSerializer(
@@ -160,7 +139,6 @@ class UserViewSet(viewsets.ModelViewSet):
         '''
         Осуществляет отписку от пользователя.
         '''
-        user = get_object_or_404(CustomUser, email=request.user)
         author = get_object_or_404(CustomUser, id=pk)
         if not Follow.objects.filter(
             user=request.user,
@@ -173,7 +151,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
         subscription = get_object_or_404(
             Follow,
-            user=user,
+            user=request.user,
             author=author
         )
         subscription.delete()
@@ -198,28 +176,3 @@ class Logout(APIView):
         return Response(
             status=status.HTTP_204_NO_CONTENT
         )
-
-
-class FollowsViewSet(viewsets.ModelViewSet):
-    '''
-    Возвращает данные по подпискам.
-    Отвечает по адресам:
-    'users/subscriptions/'
-    '''
-    serializer_class = FollowSerializer
-    permission_classes = [IsAuthenticated]
-    lookup_field = 'author_id'
-
-    def get_queryset(self):
-        user = self.request.user
-        return Follow.objects.filter(user=user)
-
-    def perform_create(self, serializer):
-        author = get_object_or_404(CustomUser, pk=self.kwargs.get('author_id'))
-        serializer.save(user=self.request.user, author=author)
-
-    def perform_destroy(self, instance):
-        user = self.request.user
-        author = get_object_or_404(CustomUser, pk=self.kwargs.get('author_id'))
-        follow = get_object_or_404(Follow, user=user, author=author)
-        follow.delete()

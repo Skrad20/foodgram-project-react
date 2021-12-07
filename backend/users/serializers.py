@@ -1,12 +1,10 @@
-from rest_framework import serializers
 from django.contrib.auth import authenticate
 from djoser.serializers import UserCreateSerializer
 from drf_extra_fields.fields import Base64ImageField
 from recipes.models import Recipe
-from .models import (
-    CustomUser,
-    Follow
-)
+from rest_framework import serializers
+
+from .models import CustomUser, Follow
 
 
 class CustomUserCreateSerializer(UserCreateSerializer):

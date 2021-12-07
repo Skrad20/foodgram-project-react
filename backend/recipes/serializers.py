@@ -1,18 +1,11 @@
-from rest_framework import serializers
-from django.shortcuts import (
-    get_object_or_404,
-)
-from .models import (
-    Recipe,
-    Tag,
-    ShoppingCart,
-    Favoritesource,
-    Ingredient,
-    IngredAmount
-)
+from django.shortcuts import get_object_or_404
 from drf_extra_fields.fields import Base64ImageField
-from users.serializers import UserSerializer
+from rest_framework import serializers
 from rest_framework.serializers import ValidationError
+from users.serializers import UserSerializer
+
+from .models import (Favorite, IngredAmount, Ingredient, Recipe, ShoppingCart,
+                     Tag)
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -79,7 +72,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Валидация данных сериалаизатора.
         '''
-        ingredients = dict(self.initial_data).get('ingredients')
+        ingredients = dict(data).get('ingredients')
         set_ingredients = set()
         if not ingredients:
             raise serializers.ValidationError(
@@ -130,7 +123,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             recipe = Recipe.objects.create(image=image, **data)
         recipe = Recipe.objects.create(**data)
         self.add_tags_to_recipe(tags, recipe)
-        self.save_ingredients_in_recipe(ingredients, recipe)
+        self.update_ingredients_in_recipe(ingredients, recipe)
 
         return recipe
 
@@ -138,20 +131,27 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Обновленный метод обновления рецептов.
         '''
+        request = self.context.get('request')
+        user = request.user
+        recipe = get_object_or_404(
+            Recipe, id=self.kwargs.get('pk')
+        )
+        if recipe.author.id != user.id:
+            raise serializers.ValidationError(
+                'Для того, чтобы изменить рецепт,',
+                'нужно быть его автором'
+            )
+        ret = super().update(recipe, data)
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         if data.get('image') is not None:
             image = data.pop('image')
             recipe.image = image
-        recipe.name = data.pop('name')
-        recipe.cooking_time = data.pop('cooking_time')
-        recipe.text = data.pop('text')
         recipe.tags.clear()
         recipe.ingredients.clear()
         self.add_tags_to_recipe(tags, recipe)
         self.update_ingredients_in_recipe(ingredients, recipe)
-
-        return recipe
+        return ret
 
     @staticmethod
     def add_tags_to_recipe(tags, recipe):
@@ -163,21 +163,6 @@ class RecipeSerializer(serializers.ModelSerializer):
     def update_ingredients_in_recipe(ingredients, recipe):
         '''Добавляет данные по рецептам'''
         for ingredient in ingredients:
-            print(ingredient)
-            IngredAmount.objects.create(
-                recipe=recipe,
-                ingredient=get_object_or_404(
-                    Ingredient,
-                    pk=ingredient.get('id')
-                ),
-                amount=ingredient.get('amount')
-            )
-
-    @staticmethod
-    def save_ingredients_in_recipe(ingredients, recipe):
-        '''Добавляет данные по рецептам'''
-        for ingredient in ingredients:
-            print(ingredient)
             IngredAmount.objects.create(
                 recipe=recipe,
                 ingredient=get_object_or_404(
@@ -194,7 +179,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         if request is None or request.user.is_anonymous:
             return False
-        return Favoritesource.objects.filter(
+        return Favorite.objects.filter(
             user=request.user, recipe=obj
         ).exists()
 
@@ -311,7 +296,7 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
         ]
 
 
-class FavoritesourceSerializer(serializers.ModelSerializer):
+class FavoriteSerializer(serializers.ModelSerializer):
     '''Сериализатор данных по рецептам в избранное.'''
     image = Base64ImageField(read_only=True)
 

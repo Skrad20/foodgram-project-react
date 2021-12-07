@@ -1,13 +1,10 @@
 from django_filters import rest_framework as filters
-from .models import (
-    Recipe,
-    CustomUser,
-    Ingredient,
-)
+
+from .models import CustomUser, Ingredient, Recipe
 
 
 class IngredientFilter(filters.FilterSet):
-    '''Фильтрует ингредиенты по названию'''
+    '''Фильтрует ингредиенты по названию.'''
     name = filters.CharFilter(field_name='name', lookup_expr='startswith')
 
     class Meta:
@@ -16,7 +13,7 @@ class IngredientFilter(filters.FilterSet):
 
 
 class FilterRecipe(filters.FilterSet):
-    '''Фтльтрует рецепты по нахлждению в карте покупок и в избранном.'''
+    '''Фильтрует рецепты по нахождению в карте покупок и в избранном.'''
 
     tags = filters.AllValuesMultipleFilter(field_name='tags__slug')
     author = filters.ModelChoiceFilter(queryset=CustomUser.objects.all())

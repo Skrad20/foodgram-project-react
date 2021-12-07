@@ -1,10 +1,9 @@
-from django.db import models
 from django.core import validators
-from .fields import ColorField
-from users.models import (
-    CustomUser,
-)
+from django.db import models
+from users.models import CustomUser
+
 from .config import CHOICES_COLOR
+from .fields import ColorField
 
 
 class Tag(models.Model):
@@ -18,7 +17,7 @@ class Tag(models.Model):
         max_length=7,
         choices=CHOICES_COLOR,
         verbose_name='Цвет HEX',
-        default='#008000',
+        default='#0000FF',
     )
     slug = models.SlugField(
         max_length=200,
@@ -26,14 +25,14 @@ class Tag(models.Model):
         unique=True,
     )
 
-    def __str__(self):
-        return self.name
-
-    class Meta():
+    class Meta:
         db_table = 'Tags'
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
         ordering = ['id']
+
+    def __str__(self):
+        return self.name
 
 
 class Ingredient(models.Model):
@@ -48,14 +47,14 @@ class Ingredient(models.Model):
         verbose_name='Единица измерения',
     )
 
-    def __str__(self):
-        return self.name
-
-    class Meta():
+    class Meta:
         db_table = 'Ingredients'
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
         ordering = ['-id']
+
+    def __str__(self):
+        return self.name
 
 
 class Recipe(models.Model):
@@ -97,14 +96,14 @@ class Recipe(models.Model):
         verbose_name='Дата публикации'
     )
 
-    def __str__(self):
-        return self.name
-
     class Meta():
         verbose_name = 'Рецепты'
         verbose_name_plural = 'Рецепты'
         db_table = 'Recipes'
         ordering = ['-id']
+
+    def __str__(self):
+        return self.name
 
 
 class IngredAmount(models.Model):
@@ -131,9 +130,6 @@ class IngredAmount(models.Model):
         ]
     )
 
-    def __str__(self):
-        return self.ingredient.name
-
     class Meta:
         verbose_name = 'Количество ингредиента'
         verbose_name_plural = 'Количество ингредиентов'
@@ -145,6 +141,9 @@ class IngredAmount(models.Model):
                 name='recipe_ingredient_unique',
             )
         ]
+
+    def __str__(self):
+        return self.ingredient.name
 
 
 class ShoppingCart(models.Model):
@@ -162,9 +161,6 @@ class ShoppingCart(models.Model):
         on_delete=models.CASCADE
     )
 
-    def __str__(self):
-        return f'{self.user.username} купит {self.recipe.name}'
-
     class Meta:
         db_table = 'ShoppingCarts'
         verbose_name = 'Список покупок'
@@ -177,8 +173,11 @@ class ShoppingCart(models.Model):
             )
         ]
 
+    def __str__(self):
+        return f'{self.user.username} купит {self.recipe.name}'
 
-class Favoritesource(models.Model):
+
+class Favorite(models.Model):
     '''Избранное.'''
     user = models.ForeignKey(
         CustomUser,
@@ -193,9 +192,6 @@ class Favoritesource(models.Model):
         on_delete=models.CASCADE,
     )
 
-    def __str__(self):
-        return f'{self.user}: {self.recipe}'
-
     class Meta:
         db_table = 'Favoritesource'
         verbose_name = 'Список избранного'
@@ -207,3 +203,6 @@ class Favoritesource(models.Model):
                 name='Уникальный список рецептов в избранном'
             )
         ]
+
+    def __str__(self):
+        return f'{self.user}: {self.recipe}'
