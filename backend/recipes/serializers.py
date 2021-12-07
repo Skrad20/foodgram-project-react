@@ -146,9 +146,9 @@ class RecipeSerializer(serializers.ModelSerializer):
         ingredients = data.pop('ingredients')
         if data.get('image') is not None:
             image = data.pop('image')
-            recipe.image = image
-        recipe.tags.clear()
-        recipe.ingredients.clear()
+            ret.image = image
+        ret.tags.clear()
+        ret.ingredients.clear()
         self.add_tags_to_recipe(tags, recipe)
         self.update_ingredients_in_recipe(ingredients, recipe)
         return ret
