@@ -12,9 +12,9 @@ from .filters import FilterRecipe, IngredientFilter
 from .models import (Favorite, IngredAmount, Ingredient, Recipe, ShoppingCart,
                      Tag)
 from .pagination import CustomPagination, PageNumberPaginationDataOnly
-from .serializers import (FavoriteSerializer,
-                          IngredientSerializer, RecipeSerializer,
-                          ShoppingCartSerializer, TagSerializer)
+from .serializers import (FavoriteSerializer, IngredientSerializer,
+                          RecipeSerializer, ShoppingCartSerializer,
+                          TagSerializer)
 
 
 class RecipesViewSet(viewsets.ModelViewSet):
@@ -40,11 +40,6 @@ class RecipesViewSet(viewsets.ModelViewSet):
     )
     search_fields = ('name', 'text', 'ingredients__name')
     ordering_fields = ('name', 'pub_date')
-
-    def get_serializer_class(self):
-        if self.request.method == 'GET':
-            return RecipeSerializer
-        return RecipeSerializer
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

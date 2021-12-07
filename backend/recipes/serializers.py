@@ -151,7 +151,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         if 'ingredients' in data:
             ingredients = data.pop('ingredients')
             recipe.ingredients.clear()
-            self.add_ingredients(ingredients, recipe)
+            self.update_ingredients_in_recipe(ingredients, recipe)
         if 'tags' in data:
             tags_data = data.pop('tags')
             recipe.tags.set(tags_data)
