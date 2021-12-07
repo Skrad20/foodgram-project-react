@@ -12,7 +12,7 @@ from .filters import FilterRecipe, IngredientFilter
 from .models import (Favorite, IngredAmount, Ingredient, Recipe, ShoppingCart,
                      Tag)
 from .pagination import CustomPagination, PageNumberPaginationDataOnly
-from .serializers import (CreateRecipeSerializer, FavoriteSerializer,
+from .serializers import (FavoriteSerializer,
                           IngredientSerializer, RecipeSerializer,
                           ShoppingCartSerializer, TagSerializer)
 
