@@ -141,17 +141,22 @@ class RecipeSerializer(serializers.ModelSerializer):
                 'Для того, чтобы изменить рецепт,',
                 'нужно быть его автором'
             )
-        ret = super().update(recipe, data)
-        tags = data.pop('tags')
-        ingredients = data.pop('ingredients')
-        if data.get('image') is not None:
-            image = data.pop('image')
-            ret.image = image
-        ret.tags.clear()
-        ret.ingredients.clear()
-        self.add_tags_to_recipe(tags, recipe)
-        self.update_ingredients_in_recipe(ingredients, recipe)
-        return ret
+        recipe.name = data.get('name', recipe.name)
+        recipe.text = data.get('text', recipe.text)
+        recipe.cooking_time = data.get(
+            'cooking_time',
+            recipe.cooking_time
+        )
+        recipe.image = data.get('image', recipe.image)
+        if 'ingredients' in data:
+            ingredients = data.pop('ingredients')
+            recipe.ingredients.clear()
+            self.add_ingredients(ingredients, recipe)
+        if 'tags' in data:
+            tags_data = data.pop('tags')
+            recipe.tags.set(tags_data)
+        recipe.save()
+        return recipe
 
     @staticmethod
     def add_tags_to_recipe(tags, recipe):
@@ -270,7 +275,7 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
             ingredients = validated_data.pop('ingredients')
             recipe.ingredients.clear()
             self.add_ingredients(ingredients, recipe)
-        if 'tags' in self.initial_data:
+        if 'tags' in self.validated_data:
             tags_data = validated_data.pop('tags')
             recipe.tags.set(tags_data)
         recipe.save()
