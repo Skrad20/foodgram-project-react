@@ -131,12 +131,6 @@ class RecipeSerializer(serializers.ModelSerializer):
         Обновленный метод обновления рецептов.
         '''
         ret = super().update(recipe, data)
-        request = self.context.get('request')
-        if ret.author != request.user:
-            raise serializers.ValidationError(
-                'Для того, чтобы изменить рецепт,',
-                'нужно быть его автором'
-            )
         if 'ingredients' in data:
             ingredients = data.pop('ingredients')
             ret.ingredients.clear()
