@@ -12,29 +12,29 @@ class Tag(models.Model):
         verbose_name='Название',
         unique=True,
     )
-    blue = '#0000FF'
-    orange = '#FFA500'
-    green = '#008000'
-    red = '#ff0000'
-    black = '#000000'
-    purple = '#800080'
-    yellow = '#FFFF00'
-    light_blue = '#42aaff'
+    BLUE = '#0000FF'
+    ORANGE = '#FFA500'
+    GREEN = '#008000'
+    RED = '#ff0000'
+    BLACK = '#000000'
+    PURPLE = '#800080'
+    YELLOW = '#FFFF00'
+    LIGHT_BLUE = '#42aaff'
     CHOICES_COLOR = [
-        (blue, 'Синий'),
-        (orange, 'Оранжевый'),
-        (green, 'Зеленый'),
-        (purple, 'Фиолетовый'),
-        (yellow, 'Желтый'),
-        (black, 'Чёрный'),
-        (red, 'Красный'),
-        (light_blue, 'Голубой'),
+        (BLUE, 'Синий'),
+        (ORANGE, 'Оранжевый'),
+        (GREEN, 'Зеленый'),
+        (PURPLE, 'Фиолетовый'),
+        (YELLOW, 'Желтый'),
+        (BLACK, 'Чёрный'),
+        (RED, 'Красный'),
+        (LIGHT_BLUE, 'Голубой'),
     ]
     color = ColorField(
         max_length=7,
         choices=CHOICES_COLOR,
         verbose_name='Цвет HEX',
-        default=light_blue,
+        default=LIGHT_BLUE,
     )
     slug = models.SlugField(
         max_length=200,
