@@ -71,7 +71,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Валидация данных сериалаизатора.
         '''
-        ingredients = dict(data).get('ingredients')
+        ingredients = data.get('ingredients')
         set_ingredients = set()
         if not ingredients:
             raise serializers.ValidationError(
@@ -130,32 +130,21 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Обновленный метод обновления рецептов.
         '''
+        ret = super().update(recipe, data)
         request = self.context.get('request')
-        user = request.user
-        recipe = get_object_or_404(
-            Recipe, id=self.kwargs.get('pk')
-        )
-        if recipe.author.id != user.id:
+        if ret.author != request.user:
             raise serializers.ValidationError(
                 'Для того, чтобы изменить рецепт,',
                 'нужно быть его автором'
             )
-        recipe.name = data.get('name', recipe.name)
-        recipe.text = data.get('text', recipe.text)
-        recipe.cooking_time = data.get(
-            'cooking_time',
-            recipe.cooking_time
-        )
-        recipe.image = data.get('image', recipe.image)
         if 'ingredients' in data:
             ingredients = data.pop('ingredients')
-            recipe.ingredients.clear()
-            self.update_ingredients_in_recipe(ingredients, recipe)
+            ret.ingredients.clear()
+            self.update_ingredients_in_recipe(ingredients, ret)
         if 'tags' in data:
             tags_data = data.pop('tags')
-            recipe.tags.set(tags_data)
-        recipe.save()
-        return recipe
+            ret.tags.set(tags_data)
+        return ret.save()
 
     @staticmethod
     def add_tags_to_recipe(tags, recipe):

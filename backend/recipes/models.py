@@ -1,8 +1,7 @@
 from django.core import validators
 from django.db import models
-from users.models import CustomUser
 
-from .config import CHOICES_COLOR
+from users.models import CustomUser
 from .fields import ColorField
 
 
@@ -13,11 +12,29 @@ class Tag(models.Model):
         verbose_name='Название',
         unique=True,
     )
+    blue = '#0000FF'
+    orange = '#FFA500'
+    green = '#008000'
+    red = '#ff0000'
+    black = '#000000'
+    purple = '#800080'
+    yellow = '#FFFF00'
+    light_blue = '#42aaff'
+    CHOICES_COLOR = [
+        (blue, 'Синий'),
+        (orange, 'Оранжевый'),
+        (green, 'Зеленый'),
+        (purple, 'Фиолетовый'),
+        (yellow, 'Желтый'),
+        (black, 'Чёрный'),
+        (red, 'Красный'),
+        (light_blue, 'Голубой'),
+    ]
     color = ColorField(
         max_length=7,
         choices=CHOICES_COLOR,
         verbose_name='Цвет HEX',
-        default='#0000FF',
+        default=light_blue,
     )
     slug = models.SlugField(
         max_length=200,
@@ -96,7 +113,7 @@ class Recipe(models.Model):
         verbose_name='Дата публикации'
     )
 
-    class Meta():
+    class Meta:
         verbose_name = 'Рецепты'
         verbose_name_plural = 'Рецепты'
         db_table = 'Recipes'
