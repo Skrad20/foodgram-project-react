@@ -91,7 +91,7 @@ class RecipeSerializer(serializers.ModelSerializer):
                 set_ingredients.add(ingredient_id)
         data['ingredients'] = ingredients
 
-        tags = dict(self.initial_data).get('tags')
+        tags = data.get('tags')
         if not tags:
             raise serializers.ValidationError(
                 'Нужно добавить хотя бы один тэг.'
@@ -103,7 +103,7 @@ class RecipeSerializer(serializers.ModelSerializer):
                 )
         data['tags'] = tags
 
-        cooking_time = dict(self.initial_data).get('cooking_time')
+        cooking_time = data.get('cooking_time')
         if int(cooking_time) < 1:
             raise serializers.ValidationError(
                 'Время приготовления должно быть больше нуля.'

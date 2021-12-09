@@ -95,7 +95,7 @@ class Recipe(models.Model):
         blank=True
     )
     text = models.TextField(
-        max_length=500,
+        max_length=5000,
         verbose_name='Текст рецепта',
     )
     cooking_time = models.IntegerField(
