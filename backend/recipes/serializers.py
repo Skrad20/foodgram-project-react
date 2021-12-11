@@ -39,7 +39,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     author = UserSerializer(read_only=True)
     ingredients = IngredAmountSerializer(
-        source="ingredients_amounts",
+        source='ingredients_amounts',
         many=True,
         read_only=True,
     )
@@ -67,53 +67,29 @@ class RecipeSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'author']
         depth = 1
 
-    def ingredients_unique(self, ingredients):
-        '''
-        Приводит данные по ингредиентам к формату.
-        id - количество.
-        Убирает повторы, суммируя вес.
-        '''
-        dict_ingred = {}
-        for item in ingredients:
-            id = item.get('id')
-            amount = item.get('amount')
-            if id in dict_ingred.keys():
-                dict_ingred[id] += amount
-            else:
-                dict_ingred[id] = amount
-        ingredients_list = []
-        for i in range(len(dict_ingred.keys())):
-            key = list(dict_ingred.keys())[i]
-            ingredients_list.append(
-                {
-                    'id': key,
-                    'amount': dict_ingred[key],
-                }
-            )
-        return ingredients_list
-
     def validate(self, data: dict) -> dict:
         '''
         Валидация данных сериалаизатора.
         '''
         ingredients = self.initial_data.get('ingredients')
-        ingredients_list = self.ingredients_unique(ingredients)
-        if not ingredients_list:
+        set_ingredients = set()
+        if not ingredients:
             raise serializers.ValidationError(
                 'Нужно добавить хотя бы один ингредиент.'
             )
         else:
-            for ingredient in ingredients_list:
+            for ingredient in ingredients:
                 if int(ingredient.get('amount')) <= 0:
                     raise serializers.ValidationError(
                         ('Значение количества не может быть меньше единицы.')
                     )
                 ingredient_id = ingredient.get('id')
-                if ingredient_id in ingredients_list:
+                if ingredient_id in set_ingredients:
                     raise serializers.ValidationError(
                         'Ингрединеты не должны повторяться'
                     )
-        data['ingredients'] = ingredients_list
+                set_ingredients.add(ingredient_id)
+        data['ingredients'] = ingredients
 
         tags = self.initial_data.get('tags')
         if not tags:
@@ -127,7 +103,7 @@ class RecipeSerializer(serializers.ModelSerializer):
                 )
         data['tags'] = tags
 
-        cooking_time = self.initial_data.get('cooking_time')
+        cooking_time = data.get('cooking_time')
         if int(cooking_time) < 1:
             raise serializers.ValidationError(
                 'Время приготовления должно быть больше нуля.'
@@ -147,21 +123,14 @@ class RecipeSerializer(serializers.ModelSerializer):
         recipe = Recipe.objects.create(**data)
         self.add_tags_to_recipe(tags, recipe)
         self.update_ingredients_in_recipe(ingredients, recipe)
-
         return recipe
 
     def update(self, recipe: Recipe, data):
         '''
         Обновленный метод обновления рецептов.
         '''
-        recipe.name = data.get(
-            'name',
-            recipe.name
-        )
-        recipe.text = data.get(
-            'text',
-            recipe.text
-        )
+        recipe.name = data.get('name', recipe.name)
+        recipe.text = data.get('text', recipe.text)
         recipe.cooking_time = data.get(
             'cooking_time',
             recipe.cooking_time
