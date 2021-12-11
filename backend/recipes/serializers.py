@@ -5,6 +5,7 @@ from rest_framework import serializers
 from users.serializers import UserSerializer
 from .models import (Favorite, IngredAmount, Ingredient, Recipe, ShoppingCart,
                      Tag)
+from .validators import ValidatorAuthorRecipe, CustomRecipeValidator
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -71,50 +72,21 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Валидация данных сериалаизатора.
         '''
-        ingredients = self.initial_data.get('ingredients')
-        set_ingredients = set()
-        if not ingredients:
-            raise serializers.ValidationError(
-                'Нужно добавить хотя бы один ингредиент.'
-            )
-        else:
-            for ingredient in ingredients:
-                if int(ingredient.get('amount')) <= 0:
-                    raise serializers.ValidationError(
-                        ('Значение количества не может быть меньше единицы.')
-                    )
-                ingredient_id = ingredient.get('id')
-                if ingredient_id in set_ingredients:
-                    raise serializers.ValidationError(
-                        'Ингрединеты не должны повторяться'
-                    )
-                set_ingredients.add(ingredient_id)
-        data['ingredients'] = ingredients
-
-        tags = self.initial_data.get('tags')
-        if not tags:
-            raise serializers.ValidationError(
-                'Нужно добавить хотя бы один тэг.'
-            )
-        elif tags:
-            if Tag.objects.filter(id__in=tags).count() < len(tags):
-                raise serializers.ValidationError(
-                    'Такого тэга нет в базе.'
-                )
-        data['tags'] = tags
-
-        cooking_time = data.get('cooking_time')
-        if int(cooking_time) < 1:
-            raise serializers.ValidationError(
-                'Время приготовления должно быть больше нуля.'
-            )
-        data['cooking_time'] = cooking_time
-        return data
+        print(self.initial_data)
+        author = self.initial_data.get('author')
+        return CustomRecipeValidator().__call__(
+            self.initial_data,
+            author
+        )
 
     def create(self, data):
         '''
         Обновленный метод создания рецептов.
         '''
+        author = data.pop('author')
+        data = ValidatorAuthorRecipe().__call__(
+            data, author
+        )
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         if data.get('image') is not None:
