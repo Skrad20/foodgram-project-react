@@ -78,14 +78,14 @@ class RecipeSerializer(serializers.ModelSerializer):
         Валидация данных сериалаизатора.
         '''
         data = self.initial_data
-        recipe_id = self.context['view'].kwargs.get('pk')
-        recipe = Recipe.objects.filter(id=recipe_id)[0]
-        author = recipe.author
         data = CustomRecipeValidator().__call__(
             data,
         )
         request = self.context.get('request')
         if request.method == 'PATCH':
+            recipe_id = self.context['view'].kwargs.get('pk')
+            recipe = Recipe.objects.filter(id=recipe_id)[0]
+            author = recipe.author
             user = request.user
             data = ValidatorAuthorRecipe().__call__(
                 data, author, user,
