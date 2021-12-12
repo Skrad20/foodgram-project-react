@@ -48,7 +48,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         many=True,
         read_only=True
     )
-    image = Base64ImageField()
+    image = Base64ImageField(read_only=True)
     cooking_time = serializers.IntegerField()
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
@@ -76,7 +76,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         Валидация данных сериалаизатора.
         '''
         data = self.initial_data
-        data = CustomRecipeValidator().__call__(
+        CustomRecipeValidator().__call__(
             data,
         )
         request = self.context.get('request')
@@ -85,7 +85,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             recipe = Recipe.objects.filter(id=recipe_id)[0]
             author = recipe.author
             user = request.user
-            data = ValidatorAuthorRecipe().__call__(
+            ValidatorAuthorRecipe().__call__(
                 data, author, user,
             )
         return data
@@ -94,6 +94,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Обновленный метод создания рецептов.
         '''
+        print(data)
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         recipe = Recipe.objects.create(**data)

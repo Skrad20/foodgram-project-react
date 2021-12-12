@@ -91,7 +91,7 @@ class Recipe(models.Model):
         verbose_name='Название рецепта',
         max_length=500,
     )
-    image = models.ImageField()
+    image = models.ImageField(upload_to="images/")
     text = models.TextField(
         max_length=5000,
         verbose_name='Текст рецепта',

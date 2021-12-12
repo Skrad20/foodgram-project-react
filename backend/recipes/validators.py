@@ -45,7 +45,6 @@ class CustomRecipeValidator:
                 'Время приготовления должно быть больше нуля.'
             )
         data['cooking_time'] = cooking_time
-        return data
 
 
 class ValidatorAuthorRecipe:
