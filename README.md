@@ -7,26 +7,7 @@ __*Foodgram*__
 # 2. Краткое описание
 
 Проект для сбора, хранения и передачи информации по рецептам.
-Преполагается наличие API
-
-# 3. Технологии в проекте
-
-* [Python 3.7](https://www.python.org/)
-* [Django 2.2.19](https://www.djangoproject.com/)
-* [Django REST framework](https://www.django-rest-framework.org/)
-* [Gunicorn 20.1.0](https://gunicorn.org/)
-* [PostgreSQL](https://www.postgresql.org/)
-* [Docker](https://www.docker.com/)
-* [Docker-compose](https://docs.docker.com/compose/reference/build/)
-* [NGINX](https://nginx.org/ru/)
-* [Yandex.Cloud](https://cloud.yandex.ru/)
-* [GitHub](https://github.com/features/actions)
-
-# 4. Инструкции по запуску
-
-* Клонируйте репозиторий
-
-```bash
+Преполагается наличие A-
 git clone git@github.com:Skrad20/foodgram-project-react.git
 ```
 
