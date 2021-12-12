@@ -94,7 +94,6 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Обновленный метод создания рецептов.
         '''
-        
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         recipe = Recipe.objects.create(**data)
