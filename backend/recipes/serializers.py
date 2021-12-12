@@ -42,15 +42,13 @@ class RecipeSerializer(serializers.ModelSerializer):
     ingredients = IngredAmountSerializer(
         source='ingredients_amounts',
         many=True,
-        read_only=True,
-        partial=True
+        read_only=True
     )
     tags = TagSerializer(
         many=True,
-        read_only=True,
-        partial=True
+        read_only=True
     )
-    image = Base64ImageField(read_only=True)
+    image = Base64ImageField()
     cooking_time = serializers.IntegerField()
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
