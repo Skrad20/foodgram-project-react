@@ -1,21 +1,16 @@
 from django.core.exceptions import ValidationError
-from rest_framework.generics import get_object_or_404
 
-from .models import Recipe, Tag
-from users.models import CustomUser
+from .models import Tag
 
 
 class CustomRecipeValidator:
     requires_context = True
 
-    def __call__(self, data, author):
-        if Recipe.objects.filter(author=author).exists():
-            return ValidationError('Такой объект уже существует')
-
+    def __call__(self, data):
         ingredients = data.get('ingredients')
         set_ingredients = set()
         if not ingredients:
-            return ValidationError(
+            raise ValidationError(
                 'Нужно добавить хотя бы один ингредиент.'
             )
         else:
@@ -39,14 +34,14 @@ class CustomRecipeValidator:
             )
         elif tags:
             if Tag.objects.filter(id__in=tags).count() < len(tags):
-                return ValidationError(
+                raise ValidationError(
                     'Такого тэга нет в базе.'
                 )
         data['tags'] = tags
 
         cooking_time = data.get('cooking_time')
         if int(cooking_time) < 1:
-            return ValidationError(
+            raise ValidationError(
                 'Время приготовления должно быть больше нуля.'
             )
         data['cooking_time'] = cooking_time
@@ -57,16 +52,9 @@ class ValidatorAuthorRecipe:
     '''Валидация доступа к редактироваю.'''
     requires_context = True
 
-    def __call__(self, data, author):
-        user_data = dict(data)
-        email = user_data.get('email')
-        user = get_object_or_404(
-            CustomUser,
-            email=email,
-        )
-        if author != user:
+    def __call__(self, data, author, user):
+        if user != author:
             raise ValidationError(
-                'Для того, чтобы изменить рецепт,',
-                'нужно быть его автором'
+                'Для того, чтобы изменить рецепт, нужно быть его автором'
             )
         return data

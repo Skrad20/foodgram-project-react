@@ -2,10 +2,10 @@ from django.shortcuts import get_object_or_404
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
-from users.serializers import UserSerializer
 from .models import (Favorite, IngredAmount, Ingredient, Recipe, ShoppingCart,
                      Tag)
-from .validators import ValidatorAuthorRecipe, CustomRecipeValidator
+from .validators import CustomRecipeValidator, ValidatorAuthorRecipe
+from users.serializers import UserSerializer
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -42,9 +42,14 @@ class RecipeSerializer(serializers.ModelSerializer):
     ingredients = IngredAmountSerializer(
         source='ingredients_amounts',
         many=True,
-        read_only=True,
+        #read_only=True,
+        partial=True
     )
-    tags = TagSerializer(many=True, read_only=True)
+    tags = TagSerializer(
+        many=True,
+        read_only=True,
+        partial=True
+    )
     image = Base64ImageField(read_only=True)
     cooking_time = serializers.IntegerField()
     is_favorited = serializers.SerializerMethodField()
@@ -72,21 +77,25 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Валидация данных сериалаизатора.
         '''
-        print(self.initial_data)
-        author = self.initial_data.get('author')
-        return CustomRecipeValidator().__call__(
-            self.initial_data,
-            author
+        data = self.initial_data
+        recipe_id = self.context['view'].kwargs.get('pk')
+        recipe = Recipe.objects.filter(id=recipe_id)[0]
+        author = recipe.author
+        data = CustomRecipeValidator().__call__(
+            data,
         )
+        request = self.context.get('request')
+        if request.method == 'PATCH':
+            user = request.user
+            data = ValidatorAuthorRecipe().__call__(
+                data, author, user,
+            )
+        return data
 
     def create(self, data):
         '''
         Обновленный метод создания рецептов.
         '''
-        author = data.pop('author')
-        data = ValidatorAuthorRecipe().__call__(
-            data, author
-        )
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         if data.get('image') is not None:

@@ -1,8 +1,8 @@
 from django.core import validators
 from django.db import models
 
-from users.models import CustomUser
 from .fields import ColorField
+from users.models import CustomUser
 
 
 class Tag(models.Model):
