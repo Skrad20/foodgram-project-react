@@ -90,7 +90,7 @@ DJOSER = {
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
-if True:
+if False:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
