@@ -59,11 +59,19 @@ content-type: application/json
 
 ###
 GET http://51.250.21.224/api/recipes/36/
+###
+
+
+POST http://51.250.21.224/api/recipes/
+content-type: application/json
+Authorization: Token aad4577f33764f26e4eb3a4a4f16a675a911fac9
+
+{"name":"Гусь","image":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBLAEsAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gODUK/9","tags":[1],"cooking_time":"3423","text":"efewf","ingredients":[{"id":388,"amount":"1"}]}
 
 ###
 POST http://51.250.21.224/api/recipes/
 content-type: application/json
-Authorization: Token 06b1e26f8bd131629e6ce31dbaded2046f7c7b1a
+Authorization: Token aad4577f33764f26e4eb3a4a4f16a675a911fac9
 
 {
     "name": "dsdgfdsgsdf",
@@ -82,7 +90,8 @@ Authorization: Token 06b1e26f8bd131629e6ce31dbaded2046f7c7b1a
     "tags": [
         1,
         2
-    ]
+    ],
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAB/CAMAAADBwz5FAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAj9JREFUeF7t3Nt6hCAMBODd93/p6spXJaCEJMCAmcuVkPlrD3f9fBePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2dPA+CHnTDQNEPfYHA27QDxLRqce8IndoEAXmJuRANusSUCAm2JkEBLIijQjggLtCJ2Bx5/DZKEp3EsiPorQkNuwhTNzUM9UXdBtpQiP2V8o/Z+8XxaxSzx1cotkum4QKP8lhxbVLsqh8+tfXLs02ysme1rO3MoheEOanYYZHuLwgasmbG4X44GgiLFAeEXzj6hRW2dwmkQ3J6zSZXx6SjKuwu5luFXuz+HpdtC+jCNd4fgeFuSShzjzQlA3pZMq8343DX/FNN32/bJmH2E6rsvtr/IvJP7GUZKzTLP5wKWhckBphkl5W6UmE4g+1jl4jPJBLSP1y46RCewfQIhGUD3MQteTq0JvBxbFHj+Ml0V+B8HgmV5YHVDB6LFgSQORIsDSeh5eKEDSRyIFgeSJOfRhQ4kcSBaHEjiQLSogejC5YG1/V4IRBc6MM4bgeDC1YG15V4JhBY6kCR/Hli4OrC62UuBuEIH0rwVCCtcHVhf67VAUKEhEFNoCYQUrg4UVHoawRMaA/GE1kA4oQPTFEbAhPZALKGkTHEGSejATMozQMI2QCBhIyCMUNTDgXswhLIWvCkI4epAYQfmGICwLXC8UFqAPTda2Bw4WCjeXjE4VNgDOFTYBThQKN9cN/n0f02aphdQs0kTxdbq0SHCnsARQs1KwWz/H0T5wu/3D9RhbVhHdGiPAAAAAElFTkSuQmCC"
 }
 
 ###

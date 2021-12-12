@@ -48,7 +48,10 @@ class RecipeSerializer(serializers.ModelSerializer):
         many=True,
         read_only=True
     )
-    image = Base64ImageField()
+    image = Base64ImageField(
+        max_length=300,
+        use_url=True
+    )
     cooking_time = serializers.IntegerField()
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
@@ -80,7 +83,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             data,
         )
         request = self.context.get('request')
-        if request.method == 'PATCH':
+        if request.method == 'PATCH' or request.method == 'DELETE':
             recipe_id = self.context['view'].kwargs.get('pk')
             recipe = Recipe.objects.filter(id=recipe_id)[0]
             author = recipe.author

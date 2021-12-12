@@ -92,7 +92,6 @@ class Recipe(models.Model):
         max_length=500,
     )
     image = models.ImageField(
-        max_length=500000,
         upload_to='recipes/',
         verbose_name='Картинки',
         blank=True
