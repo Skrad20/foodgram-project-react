@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'default')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['51.250.21.224', 'localhost', 'backend', '127.0.0.1', 'web']
 
