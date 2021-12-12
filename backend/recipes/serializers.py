@@ -48,10 +48,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         many=True,
         read_only=True
     )
-    image = Base64ImageField(
-        max_length=300,
-        use_url=True
-    )
+    image = Base64ImageField()
     cooking_time = serializers.IntegerField()
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
@@ -97,11 +94,9 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Обновленный метод создания рецептов.
         '''
+        
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
-        if data.get('image') is not None:
-            image = data.pop('image')
-            recipe = Recipe.objects.create(image=image, **data)
         recipe = Recipe.objects.create(**data)
         self.add_tags_to_recipe(tags, recipe)
         self.update_ingredients_in_recipe(ingredients, recipe)
