@@ -96,8 +96,9 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         print(data)
         tags = data.pop('tags')
+        image = data.pop('image')
         ingredients = data.pop('ingredients')
-        recipe = Recipe.objects.create(**data)
+        recipe = Recipe.objects.create(image=image, **data)
         self.add_tags_to_recipe(tags, recipe)
         self.update_ingredients_in_recipe(ingredients, recipe)
         return recipe
