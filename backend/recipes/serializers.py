@@ -95,9 +95,8 @@ class RecipeSerializer(serializers.ModelSerializer):
         Обновленный метод создания рецептов.
         '''
         tags = data.pop('tags')
-        image = data.pop('image')
         ingredients = data.pop('ingredients')
-        recipe = Recipe.objects.create(image=image, **data)
+        recipe = Recipe.objects.create(**data)
         self.add_tags_to_recipe(tags, recipe)
         self.update_ingredients_in_recipe(ingredients, recipe)
         return recipe
