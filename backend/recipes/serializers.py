@@ -94,6 +94,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Обновленный метод создания рецептов.
         '''
+        image = data.pop('image')
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         recipe = Recipe.objects.create(**data)
@@ -111,7 +112,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             'cooking_time',
             recipe.cooking_time
         )
-        recipe.image = data.get('image', recipe.image)
+        image = data.pop('image')
+        
         if 'ingredients' in data:
             ingredients = data.pop('ingredients')
             recipe.ingredients.clear()
