@@ -72,21 +72,12 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Валидация данных сериалаизатора.
         '''
-        print(self.initial_data)
-        author = self.initial_data.get('author')
-        return CustomRecipeValidator().__call__(
-            self.initial_data,
-            author
-        )
+        return self.initial_data
 
     def create(self, data):
         '''
         Обновленный метод создания рецептов.
         '''
-        author = data.pop('author')
-        data = ValidatorAuthorRecipe().__call__(
-            data, author
-        )
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
         if data.get('image') is not None:
