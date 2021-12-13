@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
+
 from .models import (Favorite, IngredAmount, Ingredient, Recipe, ShoppingCart,
                      Tag)
 from .validators import CustomRecipeValidator, ValidatorAuthorRecipe
@@ -25,10 +26,12 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class IngredAmountSerializer(serializers.ModelSerializer):
-    id = serializers.ReadOnlyField(source='ingredient.id')
+    id = serializers.IntegerField(source='ingredient.id')
     name = serializers.ReadOnlyField(source='ingredient.name')
-    measurement_unit = serializers.ReadOnlyField()
-    amount = serializers.StringRelatedField()
+    measurement_unit = serializers.ReadOnlyField(
+        source='ingredient.measurement_unit'
+    )
+    amount = serializers.IntegerField()
 
     class Meta:
         model = IngredAmount
@@ -41,14 +44,13 @@ class RecipeSerializer(serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
     ingredients = IngredAmountSerializer(
         source='ingredients_amounts',
-        many=True,
-        read_only=True
+        many=True
     )
     tags = TagSerializer(
         many=True,
         read_only=True
     )
-    image = Base64ImageField(read_only=True)
+    image = Base64ImageField(max_length=None, use_url=True)
     cooking_time = serializers.IntegerField()
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
@@ -75,7 +77,16 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Валидация данных сериалаизатора.
         '''
-        data = self.initial_data
+        ingredients_data = data.pop('ingredients_amounts')
+        list_res_in_data = []
+        for item in ingredients_data:
+            data_item = list(item.values())
+            dict_ingredients = {}
+            dict_ingredients['id'] = data_item[0]['id']
+            dict_ingredients['amount'] = data_item[1]
+            list_res_in_data.append(dict_ingredients)
+        data['ingredients'] = list_res_in_data
+        data['tags'] = self.initial_data['tags']
         CustomRecipeValidator().__call__(
             data,
         )
@@ -94,10 +105,10 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Обновленный метод создания рецептов.
         '''
-        data.pop('image')
         tags = data.pop('tags')
         ingredients = data.pop('ingredients')
-        recipe = Recipe.objects.create(**data)
+        image = data.pop('image')
+        recipe = Recipe.objects.create(image=image, **data)
         self.add_tags_to_recipe(tags, recipe)
         self.update_ingredients_in_recipe(ingredients, recipe)
         return recipe
@@ -112,7 +123,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             'cooking_time',
             recipe.cooking_time
         )
-        data.pop('image')
+        recipe.image = data.get('image', recipe.image)
         if 'ingredients' in data:
             ingredients = data.pop('ingredients')
             recipe.ingredients.clear()

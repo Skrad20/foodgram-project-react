@@ -116,45 +116,20 @@ Authorization: Token 364d0184ae3670cb63c43fecd4e769536e0f5ec6
     "text": "text_text1",
     "cooking_time": 5,
     "tags": [
-        3,
         1
     ],
     "ingredients": [
         {       
         "id": 2188,
         "amount": 232
-        },
-        {
-        "id": 2187,
-        "amount": 1
-        },
-        {
-        "id": 2187,
-        "amount": 1
-        },
-        {
-        "id": 2187,
-        "amount": 1
-        },
-        {
-        "id": 2187,
-        "amount": 1
-        },
-        {
-        "id": 2187,
-        "amount": 1
-        },
-        {
-        "id": 2187,
-        "amount": 1
         }
     ],
-    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAB/CAMAAADBwz5FAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAj9JREFUeF7t3Nt6hCAMBODd93/p6spXJaCEJMCAmcuVkPlrD3f9fBePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2dPA+CHnTDQNEPfYHA27QDxLRqce8IndoEAXmJuRANusSUCAm2JkEBLIijQjggLtCJ2Bx5/DZKEp3EsiPorQkNuwhTNzUM9UXdBtpQiP2V8o/Z+8XxaxSzx1cotkum4QKP8lhxbVLsqh8+tfXLs02ysme1rO3MoheEOanYYZHuLwgasmbG4X44GgiLFAeEXzj6hRW2dwmkQ3J6zSZXx6SjKuwu5luFXuz+HpdtC+jCNd4fgeFuSShzjzQlA3pZMq8343DX/FNN32/bJmH2E6rsvtr/IvJP7GUZKzTLP5wKWhckBphkl5W6UmE4g+1jl4jPJBLSP1y46RCewfQIhGUD3MQteTq0JvBxbFHj+Ml0V+B8HgmV5YHVDB6LFgSQORIsDSeh5eKEDSRyIFgeSJOfRhQ4kcSBaHEjiQLSogejC5YG1/V4IRBc6MM4bgeDC1YG15V4JhBY6kCR/Hli4OrC62UuBuEIH0rwVCCtcHVhf67VAUKEhEFNoCYQUrg4UVHoawRMaA/GE1kA4oQPTFEbAhPZALKGkTHEGSejATMozQMI2QCBhIyCMUNTDgXswhLIWvCkI4epAYQfmGICwLXC8UFqAPTda2Bw4WCjeXjE4VNgDOFTYBThQKN9cN/n0f02aphdQs0kTxdbq0SHCnsARQs1KwWz/H0T5wu/3D9RhbVhHdGiPAAAAAElFTkSuQmCC"
+    "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAUDBAgICAgICAgICAgICAoKCAgICAgKCgoKCAgJCQgICAgJChwXCQkaCQgIGCEYGh0dHx8fCRciJCIeJBweHx4BBQUFCAcIDwkJDxcUEhQYFBYYFxYUFBQUFhQUFBQUFBQUFBQSFRQUFBQUFBQUFBQVFRQUFBQUFBQUFBQUFBQUFP/AABEIA+gF3AMBIgACEQEDEQH/xAAdAAACAgMBAQEAAAAAAAAAAAAEBQMGAQIHAAgJ/8QA"
 }
 
 ###
 # Создание рецепта
-POST http://127.0.0.1:8000/api/recipes/
+POST  http://127.0.0.1:8000/api/recipes/
 content-type: application/json
 Authorization: Token 364d0184ae3670cb63c43fecd4e769536e0f5ec6
 
@@ -173,7 +148,12 @@ Authorization: Token 364d0184ae3670cb63c43fecd4e769536e0f5ec6
         {
         "id": 2187,
         "amount": 1
+        },
+        {
+        "id": 2189,
+        "amount": 1
         }
+
     ],
     "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAB/CAMAAADBwz5FAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAj9JREFUeF7t3Nt6hCAMBODd93/p6spXJaCEJMCAmcuVkPlrD3f9fBePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2dPA+CHnTDQNEPfYHA27QDxLRqce8IndoEAXmJuRANusSUCAm2JkEBLIijQjggLtCJ2Bx5/DZKEp3EsiPorQkNuwhTNzUM9UXdBtpQiP2V8o/Z+8XxaxSzx1cotkum4QKP8lhxbVLsqh8+tfXLs02ysme1rO3MoheEOanYYZHuLwgasmbG4X44GgiLFAeEXzj6hRW2dwmkQ3J6zSZXx6SjKuwu5luFXuz+HpdtC+jCNd4fgeFuSShzjzQlA3pZMq8343DX/FNN32/bJmH2E6rsvtr/IvJP7GUZKzTLP5wKWhckBphkl5W6UmE4g+1jl4jPJBLSP1y46RCewfQIhGUD3MQteTq0JvBxbFHj+Ml0V+B8HgmV5YHVDB6LFgSQORIsDSeh5eKEDSRyIFgeSJOfRhQ4kcSBaHEjiQLSogejC5YG1/V4IRBc6MM4bgeDC1YG15V4JhBY6kCR/Hli4OrC62UuBuEIH0rwVCCtcHVhf67VAUKEhEFNoCYQUrg4UVHoawRMaA/GE1kA4oQPTFEbAhPZALKGkTHEGSejATMozQMI2QCBhIyCMUNTDgXswhLIWvCkI4epAYQfmGICwLXC8UFqAPTda2Bw4WCjeXjE4VNgDOFTYBThQKN9cN/n0f02aphdQs0kTxdbq0SHCnsARQs1KwWz/H0T5wu/3D9RhbVhHdGiPAAAAAElFTkSuQmCC"
 }
@@ -184,7 +164,7 @@ GET http://127.0.0.1:8000/api/recipes/74/
 ###
 POST  http://127.0.0.1:8000/api/recipes/
 content-type: application/json
-Authorization: Token 184e2dd490615b0b7d3bee9e52fa6b4a68cbd089
+Authorization: Token 364d0184ae3670cb63c43fecd4e769536e0f5ec6
 
 {
     "name": "dsdgfdsgsdf",
@@ -201,17 +181,16 @@ Authorization: Token 184e2dd490615b0b7d3bee9e52fa6b4a68cbd089
         }
     ],
     "tags": [
-        1,
-        2
+        1
     ],
     "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAB/CAMAAADBwz5FAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAj9JREFUeF7t3Nt6hCAMBODd93/p6spXJaCEJMCAmcuVkPlrD3f9fBePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2dPA+CHnTDQNEPfYHA27QDxLRqce8IndoEAXmJuRANusSUCAm2JkEBLIijQjggLtCJ2Bx5/DZKEp3EsiPorQkNuwhTNzUM9UXdBtpQiP2V8o/Z+8XxaxSzx1cotkum4QKP8lhxbVLsqh8+tfXLs02ysme1rO3MoheEOanYYZHuLwgasmbG4X44GgiLFAeEXzj6hRW2dwmkQ3J6zSZXx6SjKuwu5luFXuz+HpdtC+jCNd4fgeFuSShzjzQlA3pZMq8343DX/FNN32/bJmH2E6rsvtr/IvJP7GUZKzTLP5wKWhckBphkl5W6UmE4g+1jl4jPJBLSP1y46RCewfQIhGUD3MQteTq0JvBxbFHj+Ml0V+B8HgmV5YHVDB6LFgSQORIsDSeh5eKEDSRyIFgeSJOfRhQ4kcSBaHEjiQLSogejC5YG1/V4IRBc6MM4bgeDC1YG15V4JhBY6kCR/Hli4OrC62UuBuEIH0rwVCCtcHVhf67VAUKEhEFNoCYQUrg4UVHoawRMaA/GE1kA4oQPTFEbAhPZALKGkTHEGSejATMozQMI2QCBhIyCMUNTDgXswhLIWvCkI4epAYQfmGICwLXC8UFqAPTda2Bw4WCjeXjE4VNgDOFTYBThQKN9cN/n0f02aphdQs0kTxdbq0SHCnsARQs1KwWz/H0T5wu/3D9RhbVhHdGiPAAAAAElFTkSuQmCC"
 }
 
 ###
 # Редакция рецепта
-PATCH  http://127.0.0.1:8000/api/recipes/58/
+PATCH  http://127.0.0.1:8000/api/recipes/13/
 content-type: application/json
-Authorization: Token 184e2dd490615b0b7d3bee9e52fa6b4a68cbd089
+Authorization: Token 364d0184ae3670cb63c43fecd4e769536e0f5ec6
 
 {
     "name": "121212d78878fsdgsdgd1",
@@ -228,7 +207,7 @@ Authorization: Token 184e2dd490615b0b7d3bee9e52fa6b4a68cbd089
         }
     ],
     "tags": [
-        3
+        1
     ],
     "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAB/CAMAAADBwz5FAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAj9JREFUeF7t3Nt6hCAMBODd93/p6spXJaCEJMCAmcuVkPlrD3f9fBePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2ePA2dPA+CHnTDQNEPfYHA27QDxLRqce8IndoEAXmJuRANusSUCAm2JkEBLIijQjggLtCJ2Bx5/DZKEp3EsiPorQkNuwhTNzUM9UXdBtpQiP2V8o/Z+8XxaxSzx1cotkum4QKP8lhxbVLsqh8+tfXLs02ysme1rO3MoheEOanYYZHuLwgasmbG4X44GgiLFAeEXzj6hRW2dwmkQ3J6zSZXx6SjKuwu5luFXuz+HpdtC+jCNd4fgeFuSShzjzQlA3pZMq8343DX/FNN32/bJmH2E6rsvtr/IvJP7GUZKzTLP5wKWhckBphkl5W6UmE4g+1jl4jPJBLSP1y46RCewfQIhGUD3MQteTq0JvBxbFHj+Ml0V+B8HgmV5YHVDB6LFgSQORIsDSeh5eKEDSRyIFgeSJOfRhQ4kcSBaHEjiQLSogejC5YG1/V4IRBc6MM4bgeDC1YG15V4JhBY6kCR/Hli4OrC62UuBuEIH0rwVCCtcHVhf67VAUKEhEFNoCYQUrg4UVHoawRMaA/GE1kA4oQPTFEbAhPZALKGkTHEGSejATMozQMI2QCBhIyCMUNTDgXswhLIWvCkI4epAYQfmGICwLXC8UFqAPTda2Bw4WCjeXjE4VNgDOFTYBThQKN9cN/n0f02aphdQs0kTxdbq0SHCnsARQs1KwWz/H0T5wu/3D9RhbVhHdGiPAAAAAElFTkSuQmCC"
 }
