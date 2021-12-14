@@ -96,7 +96,7 @@ class Recipe(models.Model):
         max_length=5000,
         verbose_name='Текст рецепта',
     )
-    cooking_time = models.IntegerField(
+    cooking_time = models.FloatField(
         verbose_name='Время приготовления',
         validators=[validators.MinValueValidator(1)]
     )
@@ -135,7 +135,7 @@ class IngredAmount(models.Model):
         related_name='ingredients_amounts',
         on_delete=models.CASCADE,
     )
-    amount = models.PositiveIntegerField(
+    amount = models.FloatField(
         verbose_name='Количество ингредиента',
         validators=[
             validators.MinValueValidator(

@@ -31,7 +31,7 @@ class IngredAmountSerializer(serializers.ModelSerializer):
     measurement_unit = serializers.ReadOnlyField(
         source='ingredient.measurement_unit'
     )
-    amount = serializers.IntegerField()
+    amount = serializers.FloatField()
 
     class Meta:
         model = IngredAmount
@@ -51,7 +51,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         read_only=True
     )
     image = Base64ImageField(max_length=None, use_url=True)
-    cooking_time = serializers.IntegerField()
+    cooking_time = serializers.FloatField()
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
 
@@ -117,22 +117,16 @@ class RecipeSerializer(serializers.ModelSerializer):
         '''
         Обновленный метод обновления рецептов.
         '''
-        recipe.name = data.get('name', recipe.name)
-        recipe.text = data.get('text', recipe.text)
-        recipe.cooking_time = data.get(
-            'cooking_time',
-            recipe.cooking_time
-        )
-        recipe.image = data.get('image', recipe.image)
-        if 'ingredients' in data:
-            ingredients = data.pop('ingredients')
-            recipe.ingredients.clear()
-            self.update_ingredients_in_recipe(ingredients, recipe)
-        if 'tags' in data:
-            tags_data = data.pop('tags')
-            recipe.tags.set(tags_data)
-        recipe.save()
-        return recipe
+        ingredients = data.pop('ingredients')
+        tags_data = data.pop('tags')
+        ret = super().update(recipe, data)
+        if ingredients:
+            ret.ingredients.clear()
+            self.update_ingredients_in_recipe(ingredients, ret)
+        if tags_data:
+            ret.tags.set(tags_data)
+        ret.save()
+        return ret
 
     @staticmethod
     def add_tags_to_recipe(tags, recipe):

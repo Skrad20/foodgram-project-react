@@ -17,7 +17,7 @@ class CustomRecipeValidator:
             for ingredient in ingredients:
                 if int(ingredient.get('amount')) <= 0:
                     raise ValidationError(
-                        ('Значение количества не может быть меньше единицы.')
+                        ('Значение количества не может быть меньше нуля.')
                     )
                 ingredient_id = ingredient.get('id')
                 if ingredient_id in set_ingredients:
@@ -43,6 +43,10 @@ class CustomRecipeValidator:
         if int(cooking_time) < 1:
             raise ValidationError(
                 'Время приготовления должно быть больше нуля.'
+            )
+        elif int(cooking_time) > 86400:
+            raise ValidationError(
+                'Время приготовления слишком большое.'
             )
         data['cooking_time'] = cooking_time
 
